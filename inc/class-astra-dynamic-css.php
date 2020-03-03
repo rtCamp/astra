@@ -636,7 +636,7 @@ if ( ! class_exists( 'Astra_Dynamic_CSS' ) ) {
 				);
 
 				$global_button_page_builder_desktop = array(
-					'.elementor-button-wrapper .elementor-button, .elementor-button-wrapper .elementor-button:visited, .wp-block-button .wp-block-button__link' => array(
+					'.elementor-button-wrapper .elementor-button, .wp-block-button .wp-block-button__link' => array(
 						'border-style'        => 'solid',
 						'border-top-width'    => ( isset( $global_custom_button_border_size['top'] ) && '' !== $global_custom_button_border_size['top'] ) ? astra_get_css_value( $global_custom_button_border_size['top'], 'px' ) : '0',
 						'border-right-width'  => ( isset( $global_custom_button_border_size['right'] ) && '' !== $global_custom_button_border_size['right'] ) ? astra_get_css_value( $global_custom_button_border_size['right'], 'px' ) : '0',
