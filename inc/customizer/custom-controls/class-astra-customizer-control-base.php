@@ -39,7 +39,7 @@ if ( ! class_exists( 'Astra_Customizer_Control_Base' ) ) {
 		 */
 		public function __construct() {
 
-			add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_scripts' ) );
+			add_action( 'customize_controls_enqueue_scripts', array( $this, 'enqueue_scripts' ) );
 		}
 
 		/**
@@ -55,8 +55,46 @@ if ( ! class_exists( 'Astra_Customizer_Control_Base' ) ) {
 			$css_uri     = ASTRA_THEME_URI . 'inc/customizer/custom-controls/assets/css/' . $dir_name . '/';
 			$js_uri      = ASTRA_THEME_URI . 'inc/customizer/custom-controls/assets/js/' . $dir_name . '/';
 
-			wp_enqueue_style( 'custom-control-style' . $file_rtl, $css_uri . 'custom-controls' . $file_prefix . $file_rtl . '.css', null, ASTRA_THEME_VERSION );
-			wp_enqueue_script( 'custom-control-script', $js_uri . 'custom-controls' . $file_prefix . '.js', array( 'jquery', 'customize-base', 'astra-color-alpha', 'jquery-ui-tabs', 'jquery-ui-sortable' ), ASTRA_THEME_VERSION, true );
+			if ( SCRIPT_DEBUG ) {
+				$astra_theme_addons = array(
+					'customizer-style',
+					'background',
+					'border',
+					'customizer-link',
+					'description',
+					'divider',
+					'heading',
+					'hidden',
+					'link',
+					'radio-image',
+					'responsive',
+					'responsive-color',
+					'responsive-slider',
+					'responsive-spacing',
+					'select',
+					'settings-group',
+					'slider',
+					'sortable',
+					'typography',
+				);
+				foreach ( $astra_theme_addons as $addon ) {
+
+					$customizer_control_style = ASTRA_THEME_URI . 'inc/customizer/custom-controls/assets/css/' . $dir_name . '/' . $addon . $file_prefix . $file_rtl . '.css';
+
+					if ( file_exists( ASTRA_THEME_DIR . 'inc/customizer/custom-controls/assets/css/' . $dir_name . '/' . $addon . $file_prefix . $file_rtl . '.css' ) ) {
+						wp_enqueue_style( 'astra-customizer-control-' . $addon . '-style', $customizer_control_style, null, ASTRA_THEME_VERSION );
+					}
+
+					$customizer_control_script = ASTRA_THEME_URI . 'inc/customizer/custom-controls/' . $addon . '/' . $addon . $file_prefix . '.js';
+
+					if ( file_exists( ASTRA_THEME_DIR . 'inc/customizer/custom-controls/' . $addon . '/' . $addon . $file_prefix . '.js' ) ) {
+						wp_enqueue_script( 'astra-customizer-control-' . $addon . '-script', $customizer_control_script, array( 'jquery', 'customize-base', 'astra-color-alpha', 'jquery-ui-tabs', 'jquery-ui-sortable' ), ASTRA_THEME_VERSION, true );
+					}
+				}
+			} else {
+				wp_enqueue_style( 'custom-control-style' . $file_rtl, $css_uri . 'custom-controls' . $file_prefix . $file_rtl . '.css', null, ASTRA_THEME_VERSION );
+				wp_enqueue_script( 'custom-control-script', $js_uri . 'custom-controls' . $file_prefix . '.js', array( 'jquery', 'customize-base', 'astra-color-alpha', 'jquery-ui-tabs', 'jquery-ui-sortable' ), ASTRA_THEME_VERSION, true );
+			}
 		}
 
 		/**
