@@ -8,6 +8,7 @@ module.exports = function (grunt) {
     const sass = require('node-sass');
 
     var sass_dist_files = [];
+    var rtlcss_dist_files = [];
 
     var pkgInfo = grunt.file.readJSON('package.json');
 
