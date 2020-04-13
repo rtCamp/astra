@@ -13,6 +13,36 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
+// Depreciating llms_review_thank_you_text filter.
+add_filter( 'astra_llms_review_thank_you_text', 'astra_deprecated_llms_thankyou_review_filter' );
+
+/**
+ * Astra filter to update Lifter LMS's Thank You Review text
+ *
+ * @since x.x.x
+ */
+function astra_deprecated_llms_thankyou_review_filter() {
+
+	$llms_review_thankyou_text = astra_apply_filters_deprecated( 'llms_review_thank_you_text', '', '2.4.1', 'astra_llms_review_thank_you_text', '' );
+
+	return $llms_review_thankyou_text;
+}
+
+// Depreciating lifterlms_reviews_section_title filter.
+add_filter( 'astra_lifterlms_reviews_section_title', 'astra_deprecated_llms_review_section_title' );
+
+/**
+ * Astra filter to update Lifter LMS's Reviews section title
+ *
+ * @since x.x.x
+ */
+function astra_deprecated_llms_review_section_title() {
+
+	$llms_review_se4ction_title = astra_apply_filters_deprecated( 'lifterlms_reviews_section_title', '', '2.4.1', 'astra_lifterlms_reviews_section_title', '' );
+
+	return $llms_review_se4ction_title;
+}
+
 // Depreciating astra_color_palletes filter.
 add_filter( 'astra_color_palettes', 'astra_deprecated_color_palette', 10, 1 );
 
@@ -29,7 +59,6 @@ function astra_deprecated_color_palette( $color_palette ) {
 
 	return $color_palette;
 }
-
 
 // Deprecating astra_sigle_post_navigation_enabled filter.
 add_filter( 'astra_single_post_navigation_enabled', 'astra_deprecated_sigle_post_navigation_enabled', 10, 1 );
