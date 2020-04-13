@@ -66,7 +66,7 @@ if ( ! class_exists( 'Astra_Meta_Box_Operations' ) ) {
 
 			$display_header = get_post_meta( get_the_ID(), 'ast-main-header-display', true );
 
-			$display_header = apply_filters( 'ast_main_header_display', $display_header );
+			$display_header = apply_filters( 'ast_main_header_display', $display_header ); // phpcs:ignore WPThemeReview.CoreFunctionality.PrefixAllGlobals.NonPrefixedHooknameFound
 
 			if ( 'disabled' == $display_header ) {
 

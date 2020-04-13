@@ -23,9 +23,9 @@ if ( ! is_user_logged_in() ) {
 	}
 }
 
-$classes[] = 'footer-adv';
-$classes[] = 'footer-adv-layout-4';
-$classes   = implode( ' ', $classes );
+$classes[] = 'footer-adv'; // phpcs:ignore WPThemeReview.CoreFunctionality.PrefixAllGlobals.NonPrefixedVariableFound
+$classes[] = 'footer-adv-layout-4'; // phpcs:ignore WPThemeReview.CoreFunctionality.PrefixAllGlobals.NonPrefixedVariableFound
+$classes   = implode( ' ', $classes ); // phpcs:ignore WPThemeReview.CoreFunctionality.PrefixAllGlobals.NonPrefixedVariableFound
 ?>
 
 <div class="<?php echo esc_attr( $classes ); ?>">

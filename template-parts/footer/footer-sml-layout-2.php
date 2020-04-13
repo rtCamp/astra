@@ -9,9 +9,9 @@
  * @since       Astra 1.0.0
  */
 
-$section_1 = astra_get_small_footer( 'footer-sml-section-1' );
-$section_2 = astra_get_small_footer( 'footer-sml-section-2' );
-$sections  = 0;
+$section_1 = astra_get_small_footer( 'footer-sml-section-1' ); // phpcs:ignore WPThemeReview.CoreFunctionality.PrefixAllGlobals.NonPrefixedVariableFound
+$section_2 = astra_get_small_footer( 'footer-sml-section-2' ); // phpcs:ignore WPThemeReview.CoreFunctionality.PrefixAllGlobals.NonPrefixedVariableFound
+$sections  = 0; // phpcs:ignore WPThemeReview.CoreFunctionality.PrefixAllGlobals.NonPrefixedVariableFound
 
 if ( '' != $section_1 ) {
 	$sections++;
@@ -24,12 +24,12 @@ if ( '' != $section_2 ) {
 switch ( $sections ) {
 
 	case '2':
-			$section_class = 'ast-small-footer-section-equally ast-col-md-6 ast-col-xs-12';
+			$section_class = 'ast-small-footer-section-equally ast-col-md-6 ast-col-xs-12'; // phpcs:ignore WPThemeReview.CoreFunctionality.PrefixAllGlobals.NonPrefixedVariableFound
 		break;
 
 	case '1':
 	default:
-			$section_class = 'ast-small-footer-section-equally ast-col-xs-12';
+			$section_class = 'ast-small-footer-section-equally ast-col-xs-12'; // phpcs:ignore WPThemeReview.CoreFunctionality.PrefixAllGlobals.NonPrefixedVariableFound
 		break;
 }
 

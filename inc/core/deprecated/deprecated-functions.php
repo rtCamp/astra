@@ -44,7 +44,7 @@ if ( ! function_exists( 'get_astra_secondary_class' ) ) :
 	 *
 	 * @return array
 	 */
-	function get_astra_secondary_class( $class = '' ) {
+	function get_astra_secondary_class( $class = '' ) { // phpcs:ignore WPThemeReview.CoreFunctionality.PrefixAllGlobals.NonPrefixedFunctionFound
 		_deprecated_function( __FUNCTION__, '1.5.2', 'astra_get_secondary_class()' );
 
 		return astra_get_secondary_class( $class );
@@ -64,7 +64,7 @@ if ( ! function_exists( 'deprecated_astra_color_palette' ) ) :
 	 *
 	 * @return array
 	 */
-	function deprecated_astra_color_palette( $color_palette ) {
+	function deprecated_astra_color_palette( $color_palette ) { // phpcs:ignore WPThemeReview.CoreFunctionality.PrefixAllGlobals.NonPrefixedFunctionFound
 		_deprecated_function( __FUNCTION__, '1.5.2', 'astra_deprecated_color_palette()' );
 
 		return astra_deprecated_color_palette( $color_palette );
@@ -84,7 +84,7 @@ if ( ! function_exists( 'deprecated_astra_sigle_post_navigation_enabled' ) ) :
 	 *
 	 * @return array
 	 */
-	function deprecated_astra_sigle_post_navigation_enabled( $post_nav ) {
+	function deprecated_astra_sigle_post_navigation_enabled( $post_nav ) { // phpcs:ignore WPThemeReview.CoreFunctionality.PrefixAllGlobals.NonPrefixedFunctionFound
 		_deprecated_function( __FUNCTION__, '1.5.2', 'astra_deprecated_sigle_post_navigation_enabled()' );
 
 		return astra_deprecated_sigle_post_navigation_enabled( $post_nav );
@@ -105,7 +105,7 @@ if ( ! function_exists( 'deprecated_astra_primary_header_main_rt_section' ) ) :
 	 *
 	 * @return array
 	 */
-	function deprecated_astra_primary_header_main_rt_section( $elements, $header ) {
+	function deprecated_astra_primary_header_main_rt_section( $elements, $header ) { // phpcs:ignore WPThemeReview.CoreFunctionality.PrefixAllGlobals.NonPrefixedFunctionFound
 		_deprecated_function( __FUNCTION__, '1.5.2', 'astra_deprecated_primary_header_main_rt_section()' );
 
 		return astra_deprecated_primary_header_main_rt_section( $elements, $header );
@@ -127,7 +127,7 @@ if ( ! function_exists( 'astar' ) ) :
 	 *
 	 * @return null|string|mixed The value
 	 */
-	function astar( $array, $prop, $default = null ) {
+	function astar( $array, $prop, $default = null ) { // phpcs:ignore WPThemeReview.CoreFunctionality.PrefixAllGlobals.NonPrefixedFunctionFound
 		return astra_get_prop( $array, $prop, $default );
 	}
 

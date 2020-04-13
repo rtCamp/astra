@@ -9,8 +9,8 @@
  * @since       Astra 1.0.0
  */
 
-$section_1 = astra_get_small_footer( 'footer-sml-section-1' );
-$section_2 = astra_get_small_footer( 'footer-sml-section-2' );
+$section_1 = astra_get_small_footer( 'footer-sml-section-1' ); // phpcs:ignore WPThemeReview.CoreFunctionality.PrefixAllGlobals.NonPrefixedVariableFound
+$section_2 = astra_get_small_footer( 'footer-sml-section-2' ); // phpcs:ignore WPThemeReview.CoreFunctionality.PrefixAllGlobals.NonPrefixedVariableFound
 
 ?>
 

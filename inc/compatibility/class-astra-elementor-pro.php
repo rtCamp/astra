@@ -5,14 +5,14 @@
  * @package Astra
  */
 
-namespace Elementor;
+namespace Elementor;// phpcs:ignore WPThemeReview.CoreFunctionality.PrefixAllGlobals.NonPrefixedNamespaceFound
 
 // If plugin - 'Elementor' not exist then return.
 if ( ! class_exists( '\Elementor\Plugin' ) || ! class_exists( 'ElementorPro\Modules\ThemeBuilder\Module' ) ) {
 	return;
 }
 
-namespace ElementorPro\Modules\ThemeBuilder\ThemeSupport;
+namespace ElementorPro\Modules\ThemeBuilder\ThemeSupport;// phpcs:ignore WPThemeReview.CoreFunctionality.PrefixAllGlobals.NonPrefixedNamespaceFound
 
 use Elementor\TemplateLibrary\Source_Local;
 use ElementorPro\Modules\ThemeBuilder\Classes\Locations_Manager;

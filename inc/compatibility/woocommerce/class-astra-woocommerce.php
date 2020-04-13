@@ -183,7 +183,7 @@ if ( ! class_exists( 'Astra_Woocommerce' ) ) :
 					'src'     => $css_uri . 'woocommerce-smallscreen' . $file_prefix . '.css',
 					'deps'    => 'woocommerce-layout',
 					'version' => ASTRA_THEME_VERSION,
-					'media'   => 'only screen and (max-width: ' . apply_filters( 'woocommerce_style_smallscreen_breakpoint', astra_get_tablet_breakpoint() . 'px' ) . ')',
+					'media'   => 'only screen and (max-width: ' . apply_filters( 'woocommerce_style_smallscreen_breakpoint', astra_get_tablet_breakpoint() . 'px' ) . ')', // phpcs:ignore WPThemeReview.CoreFunctionality.PrefixAllGlobals.NonPrefixedHooknameFound
 					'has_rtl' => true,
 				),
 				'woocommerce-general'     => array(
@@ -231,7 +231,7 @@ if ( ! class_exists( 'Astra_Woocommerce' ) ) :
 
 				if ( $attachment_ids ) {
 
-					$image_size = apply_filters( 'single_product_archive_thumbnail_size', 'shop_catalog' );
+					$image_size = apply_filters( 'single_product_archive_thumbnail_size', 'shop_catalog' ); // phpcs:ignore WPThemeReview.CoreFunctionality.PrefixAllGlobals.NonPrefixedHooknameFound
 
 					echo apply_filters( 'astra_woocommerce_product_flip_image', wp_get_attachment_image( reset( $attachment_ids ), $image_size, false, array( 'class' => 'show-on-hover' ) ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 				}

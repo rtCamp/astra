@@ -790,7 +790,7 @@ if ( ! function_exists( 'astra_primary_navigation_markup' ) ) {
 			}
 		} else {
 
-			$submenu_class = apply_filters( 'primary_submenu_border_class', ' submenu-with-border' );
+			$submenu_class = apply_filters( 'primary_submenu_border_class', ' submenu-with-border' ); // phpcs:ignore WPThemeReview.CoreFunctionality.PrefixAllGlobals.NonPrefixedHooknameFound
 
 			// Menu Animation.
 			$menu_animation = astra_get_option( 'header-main-submenu-container-animation' );
@@ -1902,7 +1902,7 @@ function astra_filesystem() {
  * @param WP_Customize_Manager $wp_customize instance of WP_Customize_Manager.
  * @return $wp_customize
  */
-function remove_controls( $wp_customize ) {
+function remove_controls( $wp_customize ) { // phpcs:ignore WPThemeReview.CoreFunctionality.PrefixAllGlobals.NonPrefixedFunctionFound
 
 	if ( defined( 'ASTRA_EXT_VER' ) && version_compare( ASTRA_EXT_VER, '2.4.0', '<=' ) ) {
 		$layout = array(

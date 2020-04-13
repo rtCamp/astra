@@ -44,7 +44,7 @@ class Astra_Filesystem {
 		if ( ! $wp_filesystem ) {
 			require_once ABSPATH . '/wp-admin/includes/file.php';
 
-			$context = apply_filters( 'request_filesystem_credentials_context', false );
+			$context = apply_filters( 'request_filesystem_credentials_context', false );// phpcs:ignore WPThemeReview.CoreFunctionality.PrefixAllGlobals.NonPrefixedHooknameFound
 
 			add_filter( 'request_filesystem_credentials', array( $this, 'request_filesystem_credentials' ) );
 

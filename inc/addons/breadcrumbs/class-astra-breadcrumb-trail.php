@@ -745,7 +745,7 @@ class Astra_Breadcrumb_Trail {
 							$label = ! empty( $post_type_object->labels->archive_title ) ? $post_type_object->labels->archive_title : $post_type_object->labels->name;
 
 							// Core filter hook.
-							$label = apply_filters( 'post_type_archive_title', $label, $post_type_object->name );
+							$label = apply_filters( 'post_type_archive_title', $label, $post_type_object->name );// phpcs:ignore WPThemeReview.CoreFunctionality.PrefixAllGlobals.NonPrefixedHooknameFound
 
 							// Add the post type archive link to the trail.
 							$this->items[] = sprintf( '<a href="%s">%s</a>', esc_url( get_post_type_archive_link( $post_type_object->name ) ), $label );
@@ -777,7 +777,7 @@ class Astra_Breadcrumb_Trail {
 				$label = ! empty( $post_type_object->labels->archive_title ) ? $post_type_object->labels->archive_title : $post_type_object->labels->name;
 
 				// Core filter hook.
-				$label = apply_filters( 'post_type_archive_title', $label, $post_type_object->name );
+				$label = apply_filters( 'post_type_archive_title', $label, $post_type_object->name );// phpcs:ignore WPThemeReview.CoreFunctionality.PrefixAllGlobals.NonPrefixedHooknameFound
 
 				$this->items[] = sprintf( '<a href="%s">%s</a>', esc_url( get_post_type_archive_link( $post_type_object->name ) ), $label );
 			}
@@ -1149,7 +1149,7 @@ class Astra_Breadcrumb_Trail {
 			$label = ! empty( $post_type_object->labels->archive_title ) ? $post_type_object->labels->archive_title : $post_type_object->labels->name;
 
 			// Core filter hook.
-			$label = apply_filters( 'post_type_archive_title', $label, $post_type_object->name );
+			$label = apply_filters( 'post_type_archive_title', $label, $post_type_object->name );// phpcs:ignore WPThemeReview.CoreFunctionality.PrefixAllGlobals.NonPrefixedHooknameFound
 
 			$this->items[] = sprintf( '<a href="%s">%s</a>', esc_url( get_post_type_archive_link( $post_type ) ), $label );
 		}

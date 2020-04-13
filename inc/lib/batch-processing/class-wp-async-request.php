@@ -142,7 +142,7 @@ if ( ! class_exists( 'WP_Async_Request' ) ) {
 		 */
 		public function maybe_handle() {
 			// Don't lock up other requests while processing
-			session_write_close();
+			session_write_close(); // phpcs:ignore WPThemeReview.PluginTerritory.SessionFunctionsUsage.session_session_write_close
 
 			check_ajax_referer( $this->identifier, 'nonce' );
 

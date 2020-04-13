@@ -193,9 +193,9 @@ if ( ! class_exists( 'Astra_After_Setup_Theme' ) ) {
 					$blog_width = astra_get_option( 'blog-width' );
 
 					if ( 'custom' === $blog_width ) {
-						$content_width = apply_filters( 'astra_content_width', astra_get_option( 'blog-max-width', 1200 ) );
+						$content_width = apply_filters( 'astra_content_width', astra_get_option( 'blog-max-width', 1200 ) );// phpcs:ignore WPThemeReview.CoreFunctionality.PrefixAllGlobals.NonPrefixedVariableFound
 					} else {
-						$content_width = apply_filters( 'astra_content_width', astra_get_option( 'site-content-width', 1200 ) );
+						$content_width = apply_filters( 'astra_content_width', astra_get_option( 'site-content-width', 1200 ) );// phpcs:ignore WPThemeReview.CoreFunctionality.PrefixAllGlobals.NonPrefixedVariableFound
 					}
 				} elseif ( is_single() ) {
 
@@ -203,16 +203,16 @@ if ( ! class_exists( 'Astra_After_Setup_Theme' ) ) {
 						$single_post_max = astra_get_option( 'blog-single-width' );
 
 						if ( 'custom' === $single_post_max ) {
-							$content_width = apply_filters( 'astra_content_width', astra_get_option( 'blog-single-max-width', 1200 ) );
+							$content_width = apply_filters( 'astra_content_width', astra_get_option( 'blog-single-max-width', 1200 ) );// phpcs:ignore WPThemeReview.CoreFunctionality.PrefixAllGlobals.NonPrefixedVariableFound
 						} else {
-							$content_width = apply_filters( 'astra_content_width', astra_get_option( 'site-content-width', 1200 ) );
+							$content_width = apply_filters( 'astra_content_width', astra_get_option( 'site-content-width', 1200 ) );// phpcs:ignore WPThemeReview.CoreFunctionality.PrefixAllGlobals.NonPrefixedVariableFound
 						}
 					}
 
 					// For custom post types set the global content width.
-					$content_width = apply_filters( 'astra_content_width', astra_get_option( 'site-content-width', 1200 ) );
+					$content_width = apply_filters( 'astra_content_width', astra_get_option( 'site-content-width', 1200 ) );// phpcs:ignore WPThemeReview.CoreFunctionality.PrefixAllGlobals.NonPrefixedVariableFound
 				} else {
-					$content_width = apply_filters( 'astra_content_width', astra_get_option( 'site-content-width', 1200 ) );
+					$content_width = apply_filters( 'astra_content_width', astra_get_option( 'site-content-width', 1200 ) );// phpcs:ignore WPThemeReview.CoreFunctionality.PrefixAllGlobals.NonPrefixedVariableFound
 				}
 			}
 

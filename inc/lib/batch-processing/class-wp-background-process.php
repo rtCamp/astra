@@ -160,7 +160,7 @@ if ( ! class_exists( 'WP_Background_Process' ) ) {
 		 */
 		public function maybe_handle() {
 			// Don't lock up other requests while processing
-			session_write_close();
+			session_write_close(); // phpcs:ignore WPThemeReview.PluginTerritory.SessionFunctionsUsage.session_session_write_close
 
 			if ( $this->is_process_running() ) {
 				// Background process already running.
@@ -456,7 +456,7 @@ if ( ! class_exists( 'WP_Background_Process' ) ) {
 		 */
 		protected function schedule_event() {
 			if ( ! wp_next_scheduled( $this->cron_hook_identifier ) ) {
-				wp_schedule_event( time(), $this->cron_interval_identifier, $this->cron_hook_identifier );
+				wp_schedule_event( time(), $this->cron_interval_identifier, $this->cron_hook_identifier ); // phpcs:ignore WPThemeReview.PluginTerritory.ForbiddenFunctions.cron_functionality_wp_schedule_event
 			}
 		}
 
@@ -467,7 +467,7 @@ if ( ! class_exists( 'WP_Background_Process' ) ) {
 			$timestamp = wp_next_scheduled( $this->cron_hook_identifier );
 
 			if ( $timestamp ) {
-				wp_unschedule_event( $timestamp, $this->cron_hook_identifier );
+				wp_unschedule_event( $timestamp, $this->cron_hook_identifier ); // phpcs:ignore WPThemeReview.PluginTerritory.ForbiddenFunctions.cron_functionality_wp_unschedule_event
 			}
 		}
 
@@ -483,7 +483,7 @@ if ( ! class_exists( 'WP_Background_Process' ) ) {
 
 				$this->delete( $batch->key );
 
-				wp_clear_scheduled_hook( $this->cron_hook_identifier );
+				wp_clear_scheduled_hook( $this->cron_hook_identifier ); // phpcs:ignore WPThemeReview.PluginTerritory.ForbiddenFunctions.cron_functionality_wp_clear_scheduled_hook
 			}
 
 		}

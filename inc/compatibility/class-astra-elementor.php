@@ -5,7 +5,7 @@
  * @package Astra
  */
 
-namespace Elementor;
+namespace Elementor;// phpcs:ignore WPThemeReview.CoreFunctionality.PrefixAllGlobals.NonPrefixedNamespaceFound
 
 // If plugin - 'Elementor' not exist then return.
 if ( ! class_exists( '\Elementor\Plugin' ) ) {

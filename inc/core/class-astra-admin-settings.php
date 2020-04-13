@@ -579,7 +579,7 @@ if ( ! class_exists( 'Astra_Admin_Settings' ) ) {
 			if ( apply_filters( 'astra_dashboard_admin_menu', true ) ) {
 				add_theme_page( $page_title, $page_title, $capability, $page_menu_slug, $page_menu_func );
 			} else {
-				do_action( 'asta_register_admin_menu', $parent_page, $page_title, $capability, $page_menu_slug, $page_menu_func );
+				do_action( 'asta_register_admin_menu', $parent_page, $page_title, $capability, $page_menu_slug, $page_menu_func ); // phpcs:ignore WPThemeReview.CoreFunctionality.PrefixAllGlobals.NonPrefixedHooknameFound
 			}
 		}
 
