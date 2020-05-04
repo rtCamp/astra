@@ -249,6 +249,23 @@ if ( ! class_exists( 'Astra_Woocommerce' ) ) :
 			// Container.
 			$defaults['woocommerce-content-layout'] = 'plain-container';
 
+			// Cart tray > General Color styles.
+			$defaults['primary-woo-cart-text-color'] = '';
+			$defaults['primary-woo-cart-background-color'] = '';
+			$defaults['primary-woo-cart-link-hover-color'] = '';
+
+			// Cart tray > Cart Button styles.
+			$defaults['primary-woo-cart-btn-text-color'] = '';
+			$defaults['primary-woo-cart-btn-background-color'] = '';
+			$defaults['primary-woo-cart-btn-text-hover-color'] = '';
+			$defaults['primary-woo-cart-btn-bg-hover-color'] = '';
+
+			// Cart tray > Checkout Button styles.
+			$defaults['primary-woo-checkout-btn-text-color'] = '';
+			$defaults['primary-woo-checkout-btn-background-color'] = '';
+			$defaults['primary-woo-checkout-btn-text-hover-color'] = '';
+			$defaults['primary-woo-checkout-btn-bg-hover-color'] = '';
+
 			// Sidebar.
 			$defaults['woocommerce-sidebar-layout']    = 'no-sidebar';
 			$defaults['single-product-sidebar-layout'] = 'default';
@@ -1400,10 +1417,10 @@ if ( ! class_exists( 'Astra_Woocommerce' ) ) :
 			 */
 			require ASTRA_THEME_DIR . 'inc/compatibility/woocommerce/customizer/sections/class-astra-woo-shop-container-configs.php';
 			require ASTRA_THEME_DIR . 'inc/compatibility/woocommerce/customizer/sections/class-astra-woo-shop-sidebar-configs.php';
+			require ASTRA_THEME_DIR . 'inc/compatibility/woocommerce/customizer/sections/class-astra-woo-general-configs.php';
 			require ASTRA_THEME_DIR . 'inc/compatibility/woocommerce/customizer/sections/layout/class-astra-woo-shop-layout-configs.php';
 			require ASTRA_THEME_DIR . 'inc/compatibility/woocommerce/customizer/sections/layout/class-astra-woo-shop-single-layout-configs.php';
 			require ASTRA_THEME_DIR . 'inc/compatibility/woocommerce/customizer/sections/layout/class-astra-woo-shop-cart-layout-configs.php';
-
 		}
 
 		/**

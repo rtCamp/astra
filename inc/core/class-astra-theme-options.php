@@ -218,24 +218,6 @@ if ( ! class_exists( 'Astra_Theme_Options' ) ) {
 					'header-main-rt-section-button-back-color' => '',
 					'header-main-rt-section-button-text-h-color' => '',
 					'header-main-rt-section-button-back-h-color' => '',
-
-					// Cart tray > General Color styles.
-					'primary-woo-cart-text-color' => '',
-					'primary-woo-cart-background-color' => '',
-					'primary-woo-cart-link-hover-color' => '',
-
-					// Cart tray > Cart Button styles.
-					'primary-woo-cart-btn-text-color' => '',
-					'primary-woo-cart-btn-background-color' => '',
-					'primary-woo-cart-btn-text-hover-color' => '',
-					'primary-woo-cart-btn-bg-hover-color' => '',
-
-					// Cart tray > Checkout Button styles.
-					'primary-woo-checkout-btn-text-color' => '',
-					'primary-woo-checkout-btn-background-color' => '',
-					'primary-woo-checkout-btn-text-hover-color' => '',
-					'primary-woo-checkout-btn-bg-hover-color' => '',
-
 					'header-main-rt-section-button-padding' => array(
 						'desktop' => array(
 							'top'    => '',
