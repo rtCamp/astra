@@ -253,21 +253,21 @@ if ( ! class_exists( 'Astra_Woocommerce' ) ) :
 			$defaults['hide-woo-cart-if-empty'] = 0;
 
 			// Cart tray > General Color styles.
-			$defaults['primary-woo-cart-text-color'] = '';
+			$defaults['primary-woo-cart-text-color']       = '';
 			$defaults['primary-woo-cart-background-color'] = '';
 			$defaults['primary-woo-cart-link-hover-color'] = '';
 
 			// Cart tray > Cart Button styles.
-			$defaults['primary-woo-cart-btn-text-color'] = '';
+			$defaults['primary-woo-cart-btn-text-color']       = '';
 			$defaults['primary-woo-cart-btn-background-color'] = '';
 			$defaults['primary-woo-cart-btn-text-hover-color'] = '';
-			$defaults['primary-woo-cart-btn-bg-hover-color'] = '';
+			$defaults['primary-woo-cart-btn-bg-hover-color']   = '';
 
 			// Cart tray > Checkout Button styles.
-			$defaults['primary-woo-checkout-btn-text-color'] = '';
+			$defaults['primary-woo-checkout-btn-text-color']       = '';
 			$defaults['primary-woo-checkout-btn-background-color'] = '';
 			$defaults['primary-woo-checkout-btn-text-hover-color'] = '';
-			$defaults['primary-woo-checkout-btn-bg-hover-color'] = '';
+			$defaults['primary-woo-checkout-btn-bg-hover-color']   = '';
 
 			// Sidebar.
 			$defaults['woocommerce-sidebar-layout']    = 'no-sidebar';
@@ -757,20 +757,20 @@ if ( ! class_exists( 'Astra_Woocommerce' ) ) :
 			/**
 			 * - WooCommerce cart styles.
 			 */
-			$cart_text_color  = astra_get_option( 'primary-woo-cart-text-color', $text_color );
-			$cart_bg_color   = astra_get_option( 'primary-woo-cart-background-color' );
-			$cart_h_text_color   = astra_get_option( 'primary-woo-cart-link-hover-color' );
+			$cart_text_color   = astra_get_option( 'primary-woo-cart-text-color', $text_color );
+			$cart_bg_color     = astra_get_option( 'primary-woo-cart-background-color' );
+			$cart_h_text_color = astra_get_option( 'primary-woo-cart-link-hover-color' );
 
-			$cart_button_text_color  = astra_get_option( 'primary-woo-cart-btn-text-color', $btn_color );
-			$cart_button_bg_color   = astra_get_option( 'primary-woo-cart-btn-background-color' );
-			$cart_button_text_h_color  = astra_get_option( 'primary-woo-cart-btn-text-hover-color', $btn_color );
+			$cart_button_text_color   = astra_get_option( 'primary-woo-cart-btn-text-color', $btn_color );
+			$cart_button_bg_color     = astra_get_option( 'primary-woo-cart-btn-background-color' );
+			$cart_button_text_h_color = astra_get_option( 'primary-woo-cart-btn-text-hover-color', $btn_color );
 			$cart_button_bg_h_color   = astra_get_option( 'primary-woo-cart-btn-bg-hover-color' );
 
-			$checkout_button_text_color  = astra_get_option( 'primary-woo-checkout-btn-text-color', $btn_h_color );
-			$checkout_button_bg_color   = astra_get_option( 'primary-woo-checkout-btn-background-color', $btn_bg_h_color );
-			$checkout_button_text_h_color  = astra_get_option( 'primary-woo-checkout-btn-text-hover-color', $btn_bg_h_color );
+			$checkout_button_text_color   = astra_get_option( 'primary-woo-checkout-btn-text-color', $btn_h_color );
+			$checkout_button_bg_color     = astra_get_option( 'primary-woo-checkout-btn-background-color', $btn_bg_h_color );
+			$checkout_button_text_h_color = astra_get_option( 'primary-woo-checkout-btn-text-hover-color', $btn_bg_h_color );
 			$checkout_button_bg_h_color   = astra_get_option( 'primary-woo-checkout-btn-bg-hover-color' );
-			$cart_price_hightlight_color = astra_get_option( $cart_text_color, $link_color );
+			$cart_price_hightlight_color  = astra_get_option( $cart_text_color, $link_color );
 
 			$css_output = array(
 				'.woocommerce span.onsale, .wc-block-grid__product .wc-block-grid__product-onsale' => array(
@@ -866,10 +866,10 @@ if ( ! class_exists( 'Astra_Woocommerce' ) ) :
 				 * General Woo Cart tray color for widget
 				 */
 				'.ast-site-header-cart .widget_shopping_cart a, .ast-site-header-cart .widget_shopping_cart span, .ast-site-header-cart .widget_shopping_cart strong' => array(
-					'color'            => esc_attr( $cart_text_color ),
+					'color' => esc_attr( $cart_text_color ),
 				),
 				'.ast-site-header-cart .widget_shopping_cart a:hover' => array(
-					'color'            => esc_attr( $cart_h_text_color ),
+					'color' => esc_attr( $cart_h_text_color ),
 				),
 				'.ast-site-header-cart .widget_shopping_cart_content' => array(
 					'background-color' => esc_attr( $cart_bg_color ),
