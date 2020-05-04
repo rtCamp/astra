@@ -354,6 +354,15 @@ p.demo_store,
 }
 
 /**
+ * Hide cart menu item it it's empty
+ */
+.ast-site-header-cart-li {
+	.ast-woo-hide-cart {
+		display: none;
+	}
+}
+
+/**
  * Header Cart Icon with shopping cart for responsive devices.
  */
 .ast-header-break-point{
