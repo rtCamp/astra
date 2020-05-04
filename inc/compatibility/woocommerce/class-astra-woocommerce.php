@@ -249,6 +249,9 @@ if ( ! class_exists( 'Astra_Woocommerce' ) ) :
 			// Container.
 			$defaults['woocommerce-content-layout'] = 'plain-container';
 
+			// Hide woo cart if it's empty.
+			$defaults['hide-woo-cart-if-empty'] = 0;
+
 			// Cart tray > General Color styles.
 			$defaults['primary-woo-cart-text-color'] = '';
 			$defaults['primary-woo-cart-background-color'] = '';

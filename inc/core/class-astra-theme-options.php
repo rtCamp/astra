@@ -203,7 +203,6 @@ if ( ! class_exists( 'Astra_Theme_Options' ) ) {
 					// Header - Primary.
 					'disable-primary-nav'                 => false,
 					'header-layouts'                      => 'header-main-layout-1',
-					'hide-woo-cart-if-empty'              => 0,
 					'header-display-outside-menu'         => false,
 					'header-main-rt-section-html'         => '<button>' . __( 'Contact Us', 'astra' ) . '</button>',
 					'header-main-rt-section-button-text'  => __( 'Button', 'astra' ),

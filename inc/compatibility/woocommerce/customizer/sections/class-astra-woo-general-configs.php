@@ -32,6 +32,20 @@ if ( ! class_exists( 'Astra_Woo_General_Configs' ) ) {
 
 			$_configs = array(
 
+				/**
+				 * Option: Hide Last item WooCommerce cart if cart is empty.
+				 */
+				array(
+					'name'     => ASTRA_THEME_SETTINGS . '[hide-woo-cart-if-empty]',
+					'default'  => astra_get_option( 'hide-woo-cart-if-empty' ),
+					'type'     => 'control',
+					'control'  => 'checkbox',
+					'required' => array( ASTRA_THEME_SETTINGS . '[header-main-rt-section]', '==', 'woocommerce' ),
+					'section'  => 'section-woo-general',
+					'title'    => __( 'Hide Cart If It\'s Empty', 'astra' ),
+					'priority' => 58,
+				),
+
 				array(
 					'name'     => ASTRA_THEME_SETTINGS . '[primary-menu-woo-cart-divider]',
 					'section'  => 'section-woo-general',
