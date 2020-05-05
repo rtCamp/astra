@@ -386,6 +386,22 @@ if ( ! class_exists( 'Astra_Header_Layout_Configs' ) ) {
 				),
 
 				/**
+				* Option: Navigate user to Woo General section
+				*/
+				array(
+					'name'      => ASTRA_THEME_SETTINGS . '[woo-tray-style-redirection-link]',
+					'default'   => astra_get_option( 'woo-tray-style-redirection-link' ),
+					'type'      => 'control',
+					'control'   => 'ast-customizer-link',
+					'section'   => 'section-primary-menu',
+					'required'  => array( ASTRA_THEME_SETTINGS . '[header-main-rt-section]', '==', 'woocommerce' ),
+					'priority'  => 7,
+					'link_type' => 'section',
+					'linked'    => 'section-woo-general',
+					'link_text' => __( 'Customize WooCommerce Cart Styles.', 'astra' ),
+				),
+
+				/**
 				 * Option: Hide Last item in Menu on mobile device
 				 */
 				array(
