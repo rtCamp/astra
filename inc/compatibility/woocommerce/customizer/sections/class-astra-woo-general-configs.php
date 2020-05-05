@@ -32,6 +32,17 @@ if ( ! class_exists( 'Astra_Woo_General_Configs' ) ) {
 
 			$_configs = array(
 
+				array(
+					'name'     => ASTRA_THEME_SETTINGS . '[primary-menu-woo-cart-divider]',
+					'section'  => 'section-woo-general',
+					'type'     => 'control',
+					'control'  => 'ast-heading',
+					'required' => array( ASTRA_THEME_SETTINGS . '[header-main-rt-section]', '===', 'woocommerce' ),
+					'title'    => __( 'WooCommerce Cart', 'astra' ),
+					'priority' => 60,
+					'settings' => array(),
+				),
+
 				/**
 				 * Option: Hide Last item WooCommerce cart if cart is empty
 				 */
@@ -43,18 +54,7 @@ if ( ! class_exists( 'Astra_Woo_General_Configs' ) ) {
 					'required' => array( ASTRA_THEME_SETTINGS . '[header-main-rt-section]', '==', 'woocommerce' ),
 					'section'  => 'section-woo-general',
 					'title'    => __( 'Hide Cart If It\'s Empty', 'astra' ),
-					'priority' => 58,
-				),
-
-				array(
-					'name'     => ASTRA_THEME_SETTINGS . '[primary-menu-woo-cart-divider]',
-					'section'  => 'section-woo-general',
-					'type'     => 'control',
-					'control'  => 'ast-heading',
-					'required' => array( ASTRA_THEME_SETTINGS . '[header-main-rt-section]', '===', 'woocommerce' ),
-					'title'    => __( 'WooCommerce Cart', 'astra' ),
-					'priority' => 60,
-					'settings' => array(),
+					'priority' => 62,
 				),
 
 				// Cart general colors.
