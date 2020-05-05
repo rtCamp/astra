@@ -96,7 +96,7 @@ if ( ! class_exists( 'Astra_Woo_General_Configs' ) ) {
 					'tab'        => __( 'Normal', 'astra' ),
 					'name'       => 'primary-woo-cart-link-color',
 					'default'    => astra_get_option( 'primary-woo-cart-link-color' ),
-					'title'      => __( 'Link Text Color', 'astra' ),
+					'title'      => __( 'Link Color', 'astra' ),
 					'responsive' => true,
 					'rgba'       => true,
 					'priority'   => 65,
