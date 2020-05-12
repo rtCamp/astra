@@ -256,6 +256,7 @@ if ( ! class_exists( 'Astra_Woocommerce' ) ) :
 			$defaults['primary-woo-cart-text-color']       = '';
 			$defaults['primary-woo-cart-link-color']       = '';
 			$defaults['primary-woo-cart-background-color'] = '';
+			$defaults['primary-woo-cart-separator-color']  = '';
 			$defaults['primary-woo-cart-link-hover-color'] = '';
 
 			// Cart tray > Cart Button styles.
@@ -761,6 +762,7 @@ if ( ! class_exists( 'Astra_Woocommerce' ) ) :
 			$cart_text_color            = astra_get_option( 'primary-woo-cart-text-color', $text_color );
 			$cart_link_color            = astra_get_option( 'primary-woo-cart-link-color', $text_color );
 			$cart_bg_color              = astra_get_option( 'primary-woo-cart-background-color', '#fff' );
+			$cart_separator_color       = astra_get_option( 'primary-woo-cart-separator-color', '#e2e2e2' );
 			$cart_h_link_color          = astra_get_option( 'primary-woo-cart-link-hover-color' );
 			$product_remove_cross_color = astra_get_option( 'primary-woo-cart-link-hover-color', '#ccc' );
 
@@ -852,9 +854,6 @@ if ( ! class_exists( 'Astra_Woocommerce' ) ) :
 					'color'            => esc_attr( $cart_h_color ),
 					'background-color' => esc_attr( $link_color ),
 				),
-				'.below-header-user-select .ast-site-header-cart .widget, .ast-above-header-section .ast-site-header-cart .widget a, .below-header-user-select .ast-site-header-cart .widget_shopping_cart a' => array(
-					'color' => $text_color,
-				),
 				'.below-header-user-select .ast-site-header-cart .widget_shopping_cart a:hover, .ast-above-header-section .ast-site-header-cart .widget_shopping_cart a:hover, .below-header-user-select .ast-site-header-cart .widget_shopping_cart a.remove:hover, .ast-above-header-section .ast-site-header-cart .widget_shopping_cart a.remove:hover' => array(
 					'color' => esc_attr( $link_color ),
 				),
@@ -870,17 +869,24 @@ if ( ! class_exists( 'Astra_Woocommerce' ) ) :
 				'.ast-site-header-cart-data span, .ast-site-header-cart-data strong, .ast-site-header-cart-data .woocommerce-mini-cart__empty-message' => array(
 					'color' => esc_attr( $cart_text_color ),
 				),
-				'.ast-site-header-cart .ast-site-header-cart-data a' => array(
+				'.ast-site-header-cart .ast-site-header-cart-data .widget_shopping_cart_content a' => array(
 					'color' => esc_attr( $cart_link_color ),
 				),
-				'.ast-site-header-cart .ast-site-header-cart-data a:hover' => array(
+				'.ast-site-header-cart .ast-site-header-cart-data .widget_shopping_cart_content a:hover' => array(
 					'color' => esc_attr( $cart_h_link_color ),
 				),
 				'#ast-site-header-cart .widget_shopping_cart' => array(
 					'background-color' => esc_attr( $cart_bg_color ),
 					'border-color'     => esc_attr( $cart_bg_color ),
 				),
-				'#ast-site-header-cart:hover .widget_shopping_cart:before, #ast-site-header-cart:hover .widget_shopping_cart:after' => array(
+				'#ast-site-header-cart .widget_shopping_cart .woocommerce-mini-cart__total' => array(
+					'border-top-color'    => esc_attr( $cart_separator_color ),
+					'border-bottom-color' => esc_attr( $cart_separator_color ),
+				),
+				'#ast-site-header-cart .widget_shopping_cart .mini_cart_item' => array(
+					'border-bottom-color' => astra_hex_to_rgba( $cart_separator_color, 0.2 ),
+				),
+				'#ast-site-header-cart:hover .widget_shopping_cart:before, #ast-site-header-cart:hover .widget_shopping_cart:after, .open-preview-woocommerce-cart #ast-site-header-cart .widget_shopping_cart:before' => array(
 					'border-bottom-color' => esc_attr( $cart_bg_color ),
 				),
 				'.ast-site-header-cart-data .total .woocommerce-Price-amount, .ast-site-header-cart-data .total .woocommerce-Price-amount .woocommerce-Price-currencySymbol' => array(

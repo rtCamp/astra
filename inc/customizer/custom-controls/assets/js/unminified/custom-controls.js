@@ -1344,6 +1344,28 @@ wp.customize.controlConstructor['ast-responsive-background'] = wp.customize.Cont
 
                 $this.toggleClass('open');
 
+                var iframe = jQuery( '#customize-preview' ).find( 'iframe' );
+				var preview_head = iframe.contents().find( "head" );
+				var preview_body = iframe.contents().find( "body" );
+
+				if( ! preview_body.hasClass('ast-woo-cart-preview-style') ) {
+					if( astraCustomizerControlBackground.isSiteRTL ) {
+						var output = "<style type='text/css' id='ast-woo-cart-preview-style'> .open-preview-woocommerce-cart #ast-site-header-cart .widget_shopping_cart {left: auto;right: -10px;transition: 0s;opacity: 1;margin-top: 10px;visibility: visible;}.open-preview-woocommerce-cart #ast-site-header-cart .widget_shopping_cart:before {right: 15px;right: auto;}.open-preview-woocommerce-cart #ast-site-header-cart .widget_shopping_cart:after {display: none;} </style>";
+					} else {
+						var output = "<style type='text/css' id='ast-woo-cart-preview-style'> .open-preview-woocommerce-cart #ast-site-header-cart .widget_shopping_cart {right: auto;left: -10px;transition: 0s;opacity: 1;margin-top: 10px;visibility: visible;}.open-preview-woocommerce-cart #ast-site-header-cart .widget_shopping_cart:before {left: 15px;right: auto;}.open-preview-woocommerce-cart #ast-site-header-cart .widget_shopping_cart:after {display: none;} </style>";
+					}
+
+					preview_body.addClass( 'ast-woo-cart-preview-style' );
+					preview_head.append( output );
+				}
+
+				if( preview_body.hasClass('open-preview-woocommerce-cart') ) {
+					preview_body.removeClass( 'open-preview-woocommerce-cart' );
+                }
+
+				if( ( 'customize-control-astra-settings-primary-woo-cart-colors' == parent_wrap.attr("id") || 'customize-control-astra-settings-primary-woo-cart-button-colors' == parent_wrap.attr("id") || 'customize-control-astra-settings-primary-woo-checkout-button-colors' == parent_wrap.attr("id") ) && $this.hasClass('open') ) {
+					preview_body.addClass( 'open-preview-woocommerce-cart' );
+				}
             });
 
             control.container.on( "click", ".ast-toggle-desc-wrap > .customizer-text", function( e ) {

@@ -115,6 +115,22 @@ if ( ! class_exists( 'Astra_Woo_General_Configs' ) ) {
 					'priority'   => 65,
 				),
 
+				// Option: Cart Separator Color.
+				array(
+					'type'       => 'sub-control',
+					'parent'     => ASTRA_THEME_SETTINGS . '[primary-woo-cart-colors]',
+					'section'    => 'section-woo-general',
+					'control'    => 'ast-color',
+					'transport'  => 'postMessage',
+					'tab'        => __( 'Normal', 'astra' ),
+					'name'       => 'primary-woo-cart-separator-color',
+					'default'    => astra_get_option( 'primary-woo-cart-separator-color' ),
+					'title'      => __( 'Separator Color', 'astra' ),
+					'responsive' => true,
+					'rgba'       => true,
+					'priority'   => 65,
+				),
+
 				// Option: Cart Link Color.
 				array(
 					'type'       => 'sub-control',

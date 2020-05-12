@@ -65,6 +65,7 @@ if ( ! class_exists( 'Astra_Customizer_Control_Base' ) ) {
 					'placeholder'  => __( 'No file selected', 'astra' ),
 					'lessSettings' => __( 'Less Settings', 'astra' ),
 					'moreSettings' => __( 'More Settings', 'astra' ),
+					'isSiteRTL'    => is_rtl(),
 				)
 			);
 		}
