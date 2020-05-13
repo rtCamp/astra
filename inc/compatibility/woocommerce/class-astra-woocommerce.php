@@ -1526,7 +1526,7 @@ if ( ! class_exists( 'Astra_Woocommerce' ) ) :
 
 			$is_empty_cart_option_enable = astra_get_option( 'hide-woo-cart-if-empty' );
 
-			if (  0 === WC()->cart->get_cart_contents_count() && $is_empty_cart_option_enable ) {
+			if ( 0 === WC()->cart->get_cart_contents_count() && $is_empty_cart_option_enable ) {
 				$hide_cart_if_empty = 'ast-woo-hide-cart';
 			} else {
 				$hide_cart_if_empty = '';
