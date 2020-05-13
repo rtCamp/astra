@@ -44,19 +44,25 @@ if ( ! function_exists( 'astra_masthead_get_menu_items' ) ) :
 
 		// Get selected custom menu items.
 		$markup = '';
+		$custom_class = '';
 
 		$section                    = astra_get_option( 'header-main-rt-section' );
 		$sections                   = astra_get_dynamic_header_content( 'header-main-rt-section' );
 		$disable_primary_navigation = astra_get_option( 'disable-primary-nav' );
+		$is_empty_cart_option_enable = astra_get_option( 'hide-woo-cart-if-empty' );
 		$html_element               = 'li';
 
 		if ( $disable_primary_navigation || $display_outside_markup ) {
 			$html_element = 'div';
 		}
 
+		if( 'woocommerce' === $section && $is_empty_cart_option_enable ){
+			$custom_class = "hide-woo-menu-item-if-empty";
+		}
+
 		if ( array_filter( $sections ) ) {
 			ob_start();
-			$menu_item_classes = apply_filters( 'astra_masthead_custom_menu_item', array( 'ast-masthead-custom-menu-items', $section . '-custom-menu-item' ), $section );
+			$menu_item_classes = apply_filters( 'astra_masthead_custom_menu_item', array( 'ast-masthead-custom-menu-items', $section . '-custom-menu-item', $custom_class ), $section );
 			?>
 			<<?php echo esc_attr( $html_element ); ?> class="<?php echo esc_attr( join( ' ', $menu_item_classes ) ); ?>">
 				<?php

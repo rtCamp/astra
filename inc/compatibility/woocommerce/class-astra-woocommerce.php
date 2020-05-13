@@ -1524,9 +1524,9 @@ if ( ! class_exists( 'Astra_Woocommerce' ) ) :
 		 */
 		public function astra_get_cart_link() {
 
-			$is_empty_cart_option_enable = apply_filters( 'ast_hide_header_woo_cart_option', astra_get_option( 'hide-woo-cart-if-empty' ) );
+			$is_empty_cart_option_enable = astra_get_option( 'hide-woo-cart-if-empty' );
 
-			if ( WC()->cart->cart_contents_count == 0 && $is_empty_cart_option_enable ) {
+			if (  0 === WC()->cart->get_cart_contents_count() && $is_empty_cart_option_enable ) {
 				$hide_cart_if_empty = 'ast-woo-hide-cart';
 			} else {
 				$hide_cart_if_empty = '';

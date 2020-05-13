@@ -450,7 +450,7 @@ p.demo_store a,
 /**
  * Hide cart menu item it it's empty
  */
-.ast-site-header-cart-li .ast-woo-hide-cart {
+#ast-site-header-cart .ast-woo-hide-cart {
   display: none;
 }
 
