@@ -155,7 +155,7 @@ if ( ! function_exists( 'astra_number_pagination' ) ) {
 		if ( isset( $numpages ) && ! empty( $the_posts_pagination ) && $enabled ) {
 			ob_start();
 			echo "<div class='ast-pagination'>";
-			echo $the_posts_pagination;
+			echo $the_posts_pagination; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 			echo '</div>';
 			$output = ob_get_clean();
 			echo apply_filters( 'astra_pagination_markup', $output ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped

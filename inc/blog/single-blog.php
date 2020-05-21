@@ -213,7 +213,7 @@ if ( ! function_exists( 'astra_theme_comment' ) ) {
 								>
 									<?php edit_comment_link( astra_default_strings( 'string-comment-edit-link', false ), '<span class="ast-edit-link">', '</span>' ); ?>
 									<?php
-									echo $comment_reply_link;
+									echo $comment_reply_link; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 									?>
 								</div>
 								<?php if ( '0' == $comment->comment_approved ) : ?>

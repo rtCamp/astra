@@ -1459,7 +1459,7 @@ if ( ! class_exists( 'Astra_Dynamic_CSS' ) ) {
 				'.site-header .site-description' => array(
 					'font-size' => astra_responsive_font( $site_tagline_font_size, 'tablet' ),
 				),
-				'.entry-title'                          => array(
+				'.entry-title'                   => array(
 					'font-size' => astra_responsive_font( $archive_post_title_font_size, 'tablet' ),
 				),
 
@@ -1565,7 +1565,7 @@ if ( ! class_exists( 'Astra_Dynamic_CSS' ) ) {
 				'.site-header .site-description' => array(
 					'font-size' => astra_responsive_font( $site_tagline_font_size, 'mobile' ),
 				),
-				'.entry-title'                          => array(
+				'.entry-title'                   => array(
 					'font-size' => astra_responsive_font( $archive_post_title_font_size, 'mobile' ),
 				),
 
