@@ -37,10 +37,6 @@
     border-bottom-style: solid;
 }
 
-.main-header-bar {
-    transition: all 0.2s linear;
-}
-
 /**
  * 6 - all and (max-width: $mx-break-point)
  */
@@ -53,7 +49,7 @@
     .nav-fallback-text {
         float: none;
     }
-    .site-header {
+    .main-header-bar {
         border-bottom-color: #eaeaea;
         border-bottom-style: solid;
     }

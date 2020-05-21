@@ -104,7 +104,7 @@ if ( ! class_exists( 'Astra_Skins' ) ) {
 			// Fallback to old markup when classic skin.
 			if ( 'classic-skin' === self::astra_get_selected_skin() ) {
 				$args['id_form']       = 'ast-commentform';
-				$args['comment_field'] = '<div class="ast-row comment-textarea"><fieldset class="comment-form-comment"><div class="comment-form-textarea ast-col-lg-12"><label for="comment" class="screen-reader-text">' . esc_html( astra_default_strings( 'string-comment-label-message', false ) ) . '</label><textarea id="comment" name="comment" placeholder="' . esc_attr( astra_default_strings( 'string-comment-label-message', false ) ) . '" cols="45" rows="' . ( 'modern-skin' === Astra_Skins::astra_get_selected_skin() ? '6' : '8' ) . '" aria-required="true"></textarea></div></fieldset></div>';
+				$args['comment_field'] = '<div class="ast-row comment-textarea"><fieldset class="comment-form-comment"><div class="comment-form-textarea ast-col-lg-12"><label for="comment" class="screen-reader-text">' . esc_html( astra_default_strings( 'string-comment-label-message', false ) ) . '</label><textarea id="comment" name="comment" placeholder="' . esc_attr( astra_default_strings( 'string-comment-label-message', false ) ) . '" cols="45" rows="' . ( 'modern-skin' === self::astra_get_selected_skin() ? '6' : '8' ) . '" aria-required="true"></textarea></div></fieldset></div>';
 			}
 
 			return $args;
