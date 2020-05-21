@@ -3,7 +3,7 @@ module.exports = function (grunt) {
     // Project configuration
     var autoprefixer = require('autoprefixer');
     var flexibility = require('postcss-flexibility');
-    var Astra_theme_Addons = ['background', 'border', 'color', 'customizer-link', 'description', 'divider', 'heading', 'hidden', 'radio-image', 'responsive', 'responsive-color', 'responsive-slider', 'responsive-spacing', 'select', 'settings-group', 'slider', 'sortable', 'spacing', 'typography'];
+    var Astra_theme_Addons = ['background', 'border', 'color', 'customizer-link', 'description', 'divider', 'heading', 'hidden', 'link', 'radio-image', 'responsive', 'responsive-color', 'responsive-background', 'responsive-slider', 'responsive-spacing', 'select', 'settings-group', 'slider', 'sortable', 'spacing', 'typography'];
 
     const sass = require('node-sass');
 
@@ -243,6 +243,12 @@ module.exports = function (grunt) {
                     },
                     {
                         src: [
+                            'inc/addons/heading-colors/assets/js/unminified/*.js',
+                        ],
+                        dest: 'inc/addons/heading-colors/assets/js/minified/customizer-preview.min.js',
+                    },
+                    {
+                        src: [
                             'inc/addons/breadcrumbs/assets/js/unminified/*.js',
                         ],
                         dest: 'inc/addons/breadcrumbs/assets/js/minified/customizer-preview.min.js',
@@ -397,9 +403,10 @@ module.exports = function (grunt) {
                     '!build/**',
                     '!css/sourcemap/**',
                     '!.git/**',
+                    '!.github/**',
                     '!bin/**',
                     '!.gitlab-ci.yml',
-                    '!bin/**',
+                    '!cghooks.lock',
                     '!tests/**',
                     '!phpunit.xml.dist',
                     '!*.sh',
@@ -416,6 +423,15 @@ module.exports = function (grunt) {
                     '!composer.lock',
                     '!package-lock.json',
                     '!phpcs.xml.dist',
+                    '!admin/bsf-analytics/.git/**',
+                    '!admin/bsf-analytics/bin/**',
+                    '!admin/bsf-analytics/.gitignore',
+                    '!admin/bsf-analytics/composer.json',
+                    '!admin/bsf-analytics/composer.lock',
+                    '!admin/bsf-analytics/Gruntfile.js',
+                    '!admin/bsf-analytics/package.json',
+                    '!admin/bsf-analytics/package-lock.json',
+                    '!admin/bsf-analytics/phpcs.xml.dist',
                 ],
                 dest: 'astra/'
             }
@@ -502,16 +518,17 @@ module.exports = function (grunt) {
                             'inc/customizer/custom-controls/background/background.js',
                             'inc/customizer/custom-controls/border/border.js',
                             'inc/customizer/custom-controls/color/color.js',
+                            'inc/customizer/custom-controls/link/link.js',
                             'inc/customizer/custom-controls/customizer-link/customizer-link.js',
                             'inc/customizer/custom-controls/radio-image/radio-image.js',
                             'inc/customizer/custom-controls/responsive/responsive.js',
                             'inc/customizer/custom-controls/responsive-color/responsive-color.js',
+                            'inc/customizer/custom-controls/responsive-background/responsive-background.js',
                             'inc/customizer/custom-controls/responsive-slider/responsive-slider.js',
                             'inc/customizer/custom-controls/responsive-spacing/responsive-spacing.js',
                             'inc/customizer/custom-controls/settings-group/settings-group.js',
                             'inc/customizer/custom-controls/slider/slider.js',
                             'inc/customizer/custom-controls/sortable/sortable.js',
-                            'inc/customizer/custom-controls/spacing/spacing.js',
                             'inc/customizer/custom-controls/typography/typography.js'
 
                         ],
@@ -594,8 +611,15 @@ module.exports = function (grunt) {
                     }
                 ]
             }
-        }
+        },
 
+        wp_readme_to_markdown: {
+			your_target: {
+				files: {
+					'README.md': 'readme.txt'
+				}
+			},
+		},
     }
     );
 
@@ -612,6 +636,7 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-wp-i18n');
     grunt.loadNpmTasks('grunt-bumpup');
     grunt.loadNpmTasks('grunt-text-replace');
+    grunt.loadNpmTasks("grunt-wp-readme-to-markdown")
 
     // rtlcss, you will still need to install ruby and sass on your system manually to run this
     grunt.registerTask('rtl', ['rtlcss']);
@@ -650,9 +675,7 @@ module.exports = function (grunt) {
                     }
                 });
             }
-
         });
-
     });
 
     // Grunt release - Create installable package of the local files
@@ -670,6 +693,9 @@ module.exports = function (grunt) {
             grunt.task.run('replace');
         }
     });
+
+    // Generate Read me file
+    grunt.registerTask( 'readme', ['wp_readme_to_markdown'] );
 
     // i18n
     grunt.registerTask('i18n', ['addtextdomain', 'makepot']);

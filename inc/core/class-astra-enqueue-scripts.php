@@ -4,7 +4,7 @@
  *
  * @package     Astra
  * @author      Astra
- * @copyright   Copyright (c) 2019, Astra
+ * @copyright   Copyright (c) 2020, Astra
  * @link        https://wpastra.com/
  * @since       Astra 1.0.0
  */
@@ -61,7 +61,7 @@ if ( ! class_exists( 'Astra_Enqueue_Scripts' ) ) {
 		 * @link https://github.com/WordPress/twentynineteen/pull/47/files
 		 * @link https://github.com/ampproject/amphtml/issues/18671
 		 */
-		function astra_skip_link_focus_fix() {
+		public function astra_skip_link_focus_fix() {
 			// Skip printing script on AMP content, since accessibility fix is covered by AMP framework.
 			if ( astra_is_amp_endpoint() ) {
 				return;
@@ -84,7 +84,26 @@ if ( ! class_exists( 'Astra_Enqueue_Scripts' ) ) {
 		 * @return String body classes to be added to <body> tag in admin page
 		 */
 		public function admin_body_class( $classes ) {
-			$content_layout = astra_get_content_layout();
+
+			global $pagenow;
+			$screen = get_current_screen();
+
+			if ( ( 'post-new.php' == $pagenow || 'post.php' == $pagenow ) && ( defined( 'ASTRA_ADVANCED_HOOKS_POST_TYPE' ) && ASTRA_ADVANCED_HOOKS_POST_TYPE == $screen->post_type ) ) {
+				return;
+			}
+
+			$post_id = get_the_ID();
+
+			if ( $post_id ) {
+				$meta_content_layout = get_post_meta( $post_id, 'site-content-layout', true );
+			}
+
+			if ( ( isset( $meta_content_layout ) && ! empty( $meta_content_layout ) ) && 'default' !== $meta_content_layout ) {
+				$content_layout = $meta_content_layout;
+			} else {
+				$content_layout = astra_get_option( 'site-content-layout' );
+			}
+
 			if ( 'content-boxed-container' == $content_layout ) {
 				$classes .= ' ast-separate-container';
 			} elseif ( 'boxed-container' == $content_layout ) {
@@ -164,12 +183,12 @@ if ( ! class_exists( 'Astra_Enqueue_Scripts' ) ) {
 			 * IE Only Js and CSS Files.
 			 */
 			// Flexibility.js for flexbox IE10 support.
-			wp_enqueue_script( 'astra-flexibility', $js_uri . 'flexibility' . $file_prefix . '.js', array(), ASTRA_THEME_VERSION );
+			wp_enqueue_script( 'astra-flexibility', $js_uri . 'flexibility' . $file_prefix . '.js', array(), ASTRA_THEME_VERSION, false );
 			wp_add_inline_script( 'astra-flexibility', 'flexibility(document.documentElement);' );
 			wp_script_add_data( 'astra-flexibility', 'conditional', 'IE' );
 
 			// Polyfill for CustomEvent for IE.
-			wp_register_script( 'astra-customevent', $js_uri . 'custom-events-polyfill' . $file_prefix . '.js', array(), ASTRA_THEME_VERSION );
+			wp_register_script( 'astra-customevent', $js_uri . 'custom-events-polyfill' . $file_prefix . '.js', array(), ASTRA_THEME_VERSION, false );
 
 			// All assets.
 			$all_assets = self::theme_assets();
@@ -295,8 +314,10 @@ if ( ! class_exists( 'Astra_Enqueue_Scripts' ) ) {
 			}
 
 			$css_uri = ASTRA_THEME_URI . 'inc/assets/css/block-editor-styles' . $rtl . '.css';
+			$js_uri  = ASTRA_THEME_URI . 'inc/assets/js/block-editor-script.js';
 
 			wp_enqueue_style( 'astra-block-editor-styles', $css_uri, false, ASTRA_THEME_VERSION, 'all' );
+			wp_enqueue_script( 'astra-block-editor-script', $js_uri, false, ASTRA_THEME_VERSION, 'all' );
 
 			// Render fonts in Gutenberg layout.
 			Astra_Fonts::render_fonts();
