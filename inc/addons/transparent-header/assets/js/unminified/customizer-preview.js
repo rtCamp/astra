@@ -168,7 +168,7 @@
 
 	astra_css( 'astra-settings[primary-woo-cart-background-color]', 'background-color', '#ast-site-header-cart .widget_shopping_cart, .ast-site-header-cart .ast-site-header-cart-data .widget_shopping_cart .mini_cart_item a.remove:hover, .ast-site-header-cart .ast-site-header-cart-data .widget_shopping_cart .mini_cart_item:hover > a.remove' );
 	astra_css( 'astra-settings[primary-woo-cart-background-color]', 'border-color', '#ast-site-header-cart .widget_shopping_cart' );
-	astra_css( 'astra-settings[primary-woo-cart-background-color]', 'border-bottom-color', '.open-preview-woocommerce-cart #ast-site-header-cart .widget_shopping_cart:before, #ast-site-header-cart:hover .widget_shopping_cart:before, #ast-site-header-cart:hover .widget_shopping_cart:after' );
+	astra_css( 'astra-settings[primary-woo-cart-background-color]', 'border-bottom-color', '.open-preview-woocommerce-cart #masthead #ast-site-header-cart .widget_shopping_cart:before, #ast-site-header-cart:hover .widget_shopping_cart:before, #ast-site-header-cart:hover .widget_shopping_cart:after' );
 
 	astra_css( 'astra-settings[primary-woo-cart-separator-color]', 'border-top-color', '#ast-site-header-cart .widget_shopping_cart .woocommerce-mini-cart__total' );
 	astra_css( 'astra-settings[primary-woo-cart-separator-color]', 'border-bottom-color', '#ast-site-header-cart .widget_shopping_cart .woocommerce-mini-cart__total, #ast-site-header-cart .widget_shopping_cart .mini_cart_item' );
