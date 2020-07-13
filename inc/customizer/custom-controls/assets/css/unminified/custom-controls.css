@@ -1326,35 +1326,35 @@ input[type="text"].select2-search__field {
   margin-left: 5px;
 }
 
-.customize-control-ast-sortable ul.ui-sortable {
+.customize-control-ast-sortable .ui-sortable {
   cursor: default;
 }
 
-.customize-control-ast-sortable ul.ui-sortable .dashicons-visibility {
+.customize-control-ast-sortable .ui-sortable .dashicons-visibility {
   cursor: pointer;
 }
 
-.customize-control-ast-sortable ul.ui-sortable li {
+.customize-control-ast-sortable .ui-sortable li {
   padding: 5px 10px;
   border: 1px solid #333;
   background: #fff;
   cursor: move;
 }
 
-.customize-control-ast-sortable ul.ui-sortable li .dashicons.dashicons-menu {
+.customize-control-ast-sortable .ui-sortable li .dashicons.dashicons-menu {
   float: right;
 }
 
-.customize-control-ast-sortable ul.ui-sortable li .dashicons.visibility {
+.customize-control-ast-sortable .ui-sortable li .dashicons.visibility {
   margin-right: 10px;
 }
 
-.customize-control-ast-sortable ul.ui-sortable li.invisible {
+.customize-control-ast-sortable .ui-sortable li.invisible {
   color: #aaa;
   border: 1px dashed #aaa;
 }
 
-.customize-control-ast-sortable ul.ui-sortable li.invisible .dashicons.visibility {
+.customize-control-ast-sortable .ui-sortable li.invisible .dashicons.visibility {
   color: #aaa;
 }
 
