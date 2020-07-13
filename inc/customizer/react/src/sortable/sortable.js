@@ -15,6 +15,7 @@ class SortableComponent extends Component {
 		};
 
 		this.onDragEnd = this.onDragEnd.bind(this);
+		this.itemOnClick = this.itemOnClick.bind(this);
 	}
 	
 	onDragEnd( items ) {
@@ -34,7 +35,12 @@ class SortableComponent extends Component {
 			this.props.control.setting.set( updateState );
 		}
 	}
+	
+	itemOnClick( e ) {
+		console.log(e.target)
+		console.log(e.currentTarget)
 
+	}
 	render() {
 
 		let labelHtml = null;
@@ -74,7 +80,7 @@ class SortableComponent extends Component {
 			if ( choices[ choiceID ] ) { 
 				
 				var html = ( 
-					<li { ...inputAttrs } key={ choiceID } className='ast-sortable-item ui-sortable-handle' data-value={ choiceID } >
+					<li { ...inputAttrs } onClick={ ( e ) => this.itemOnClick( e ) } key={ choiceID } className='ast-sortable-item ui-sortable-handle' data-value={ choiceID } >
 						<i className='dashicons dashicons-menu'></i>
 						<i className="dashicons dashicons-visibility visibility"></i>
 						{ choices[ choiceID ] }
@@ -90,7 +96,7 @@ class SortableComponent extends Component {
 			if ( Array.isArray( value ) && -1 === value.indexOf( choiceID ) ) { 
 				
 				var html = ( 
-					<li { ...inputAttrs } key={ choiceID } className='ast-sortable-item ui-sortable-handle invisible' data-value={ choiceID }>
+					<li { ...inputAttrs } onClick={ this.itemOnClick } key={ choiceID } className='ast-sortable-item ui-sortable-handle invisible' data-value={ choiceID }>
 						<i className='dashicons dashicons-menu'></i>
 						<i className="dashicons dashicons-visibility visibility"></i>
 						{ choices[ choiceID ] }
