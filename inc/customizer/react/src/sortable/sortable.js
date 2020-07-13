@@ -37,8 +37,15 @@ class SortableComponent extends Component {
 	}
 	
 	itemOnClick( e ) {
-		console.log(e.target)
-		console.log(e.currentTarget)
+		
+		let obj = this.state.value;
+
+		e.target.classList.toggle( "dashicons-visibility-faint" )
+		e.currentTarget.classList.toggle( "invisible" )
+		delete  obj[ e.currentTarget.dataset.value ]
+		
+		this.setState( { value: obj } );
+		this.props.control.setting.set( obj );
 
 	}
 	render() {
