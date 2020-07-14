@@ -74,7 +74,7 @@ class SortableComponent extends Component {
 			inputAttrs
 		} = this.props.control.params
 		
-		{ Object.keys( choices ).map( ( item ) => {
+		{ this.state.value.map( ( item ) => {
 			theItems.push(
 				{
 					id: item,
