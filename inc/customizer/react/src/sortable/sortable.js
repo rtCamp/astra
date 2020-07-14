@@ -74,7 +74,14 @@ class SortableComponent extends Component {
 			inputAttrs
 		} = this.props.control.params
 		
-		{ this.state.value.map( ( item ) => {
+		// { this.state.value.map( ( item ) => {
+		// 	theItems.push(
+		// 		{
+		// 			id: item,
+		// 		}
+		// 	)
+		// } ) }
+		{ Object.keys( choices ).map( ( item ) => {
 			theItems.push(
 				{
 					id: item,
@@ -109,7 +116,7 @@ class SortableComponent extends Component {
 		} );
 		
 
-		invisibleMetaHtml = Object.keys( choices ).filter( ( choiceID ) => {
+		invisibleMetaHtml = Object.keys( choices ).map( ( choiceID ) => {
 
 			if ( Array.isArray( this.state.value ) && -1 === this.state.value.indexOf( choiceID ) ) { 
 				
@@ -126,6 +133,14 @@ class SortableComponent extends Component {
 			
 		} );
 		
+		invisibleMetaHtml = invisibleMetaHtml.filter( function( x ) {
+			return x !== undefined;
+		});
+		visibleMetaHtml = visibleMetaHtml.filter( function( x ) {
+			return x !== undefined;
+		});
+		
+
 		return (
 			<label className='ast-sortable'>
 				{ labelHtml }

@@ -13293,9 +13293,16 @@ var SortableComponent = /*#__PURE__*/function (_Component) {
           description = _this$props$control$p.description,
           value = _this$props$control$p.value,
           choices = _this$props$control$p.choices,
-          inputAttrs = _this$props$control$p.inputAttrs;
+          inputAttrs = _this$props$control$p.inputAttrs; // { this.state.value.map( ( item ) => {
+      // 	theItems.push(
+      // 		{
+      // 			id: item,
+      // 		}
+      // 	)
+      // } ) }
+
       {
-        this.state.value.map(function (item) {
+        Object.keys(choices).map(function (item) {
           theItems.push({
             id: item
           });
@@ -13332,7 +13339,7 @@ var SortableComponent = /*#__PURE__*/function (_Component) {
 
         return html;
       });
-      invisibleMetaHtml = Object.keys(choices).filter(function (choiceID) {
+      invisibleMetaHtml = Object.keys(choices).map(function (choiceID) {
         if (Array.isArray(_this2.state.value) && -1 === _this2.state.value.indexOf(choiceID)) {
           var html = Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_7__["createElement"])("li", _babel_runtime_helpers_extends__WEBPACK_IMPORTED_MODULE_0___default()({}, inputAttrs, {
             onClick: _this2.itemOnClick,
@@ -13347,6 +13354,12 @@ var SortableComponent = /*#__PURE__*/function (_Component) {
         }
 
         return html;
+      });
+      invisibleMetaHtml = invisibleMetaHtml.filter(function (x) {
+        return x !== undefined;
+      });
+      visibleMetaHtml = visibleMetaHtml.filter(function (x) {
+        return x !== undefined;
       });
       return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_7__["createElement"])("label", {
         className: "ast-sortable"
