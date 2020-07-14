@@ -37,18 +37,25 @@ class SortableComponent extends Component {
 	}
 	
 	itemOnClick( e ) {
-		
-		let obj = this.state.value;
-		let index = obj.indexOf( e.currentTarget.dataset.value );
 
 		e.target.classList.toggle( "dashicons-visibility-faint" )
 		e.currentTarget.classList.toggle( "invisible" )
-		console.log(obj)
-		obj.splice(index, 1);			
-		console.log(obj)
-		this.setState( { value: obj } );
-		console.log(this.state.value)
-		this.props.control.setting.set( this.state.value );
+
+		let parent = e.currentTarget.parentElement;
+
+		let children = parent.querySelectorAll( '.ast-sortable-item' );
+		
+		let newValue = [];
+
+		for ( let i = 0; i < children.length; i++ ) {
+
+			if ( ! children[i].classList.contains( 'invisible' ) ) {
+				newValue.push( children[i].dataset.value )
+			}
+		}
+
+		this.setState( { value: newValue } );
+		this.props.control.setting.set( newValue );
 
 	}
 	render() {
@@ -67,7 +74,7 @@ class SortableComponent extends Component {
 			inputAttrs
 		} = this.props.control.params
 		
-		{ this.state.value.map( ( item ) => {
+		{ Object.keys( choices ).map( ( item ) => {
 			theItems.push(
 				{
 					id: item,
@@ -100,10 +107,11 @@ class SortableComponent extends Component {
 
 			return html;
 		} );
+		
 
 		invisibleMetaHtml = Object.keys( choices ).filter( ( choiceID ) => {
 
-			if ( Array.isArray( value ) && -1 === value.indexOf( choiceID ) ) { 
+			if ( Array.isArray( this.state.value ) && -1 === this.state.value.indexOf( choiceID ) ) { 
 				
 				var html = ( 
 					<li { ...inputAttrs } onClick={ this.itemOnClick } key={ choiceID } className='ast-sortable-item ui-sortable-handle invisible' data-value={ choiceID }>
@@ -117,6 +125,7 @@ class SortableComponent extends Component {
 			return html;
 			
 		} );
+		
 		return (
 			<label className='ast-sortable'>
 				{ labelHtml }
