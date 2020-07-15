@@ -18,7 +18,7 @@ switch( $type ) {
 		break;
 	case 'button':
 		?>
-		<div class="site-header-item site-header-focus-item" data-section="astra_customizer_header_button">
+		<div class="button-item button-focus-item" data-section="section-header-builder-button">
 				<?php do_action( 'astra_header_button' ); ?>
 			</div>
 		<?php
