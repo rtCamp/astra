@@ -429,3 +429,21 @@ function astra_get_hubspot_comp_code() {
 }
 
 add_filter( 'leadin_affiliate_code', 'astra_get_hubspot_comp_code' );
+
+// BSF Analytics library.
+if ( ! class_exists( 'BSF_Analytics_Loader' ) ) {
+	require_once ASTRA_THEME_DIR . 'admin/bsf-analytics/class-bsf-analytics-loader.php';
+}
+
+$bsf_analytics = BSF_Analytics_Loader::get_instance();
+
+$bsf_analytics->set_entity(
+	array(
+		'astra' => array(
+			'product_name'   => 'Astra',
+			'path'           => ASTRA_THEME_DIR . 'admin/bsf-analytics',
+			'author'         => 'Brainstorm Force',
+			'time_to_display' => '+24 hours'
+		),
+	)
+);
