@@ -584,6 +584,14 @@ if ( ! class_exists( 'Astra_Customizer' ) ) {
 			);
 
 			Astra_Customizer_Control_Base::add_control(
+				'ast-background',
+				array(
+					'callback'          => 'Astra_Control_Background',
+					'sanitize_callback' => array( 'Astra_Customizer_Sanitizes', 'sanitize_background_obj' ),
+				)
+			);
+
+			Astra_Customizer_Control_Base::add_control(
 				'image',
 				array(
 					'callback'          => 'WP_Customize_Image_Control',
@@ -717,9 +725,7 @@ if ( ! class_exists( 'Astra_Customizer' ) ) {
 				}
 			}
 
-			wp_enqueue_style( 'wp-color-picker' );
-			wp_enqueue_script( 'astra-color-alpha' );
-
+			wp_enqueue_style( 'wp-components' );
 			wp_enqueue_script( 'thickbox' );
 			wp_enqueue_style( 'thickbox' );
 
@@ -784,12 +790,12 @@ if ( ! class_exists( 'Astra_Customizer' ) ) {
 
 			// Enqueue Customizer script.
 			$editor_dependencies = array(
-				'jquery',
 				'customize-controls',
 				'wp-i18n',
 				'wp-components',
-				'wp-edit-post',
 				'wp-element',
+				'wp-media-utils',
+				'wp-block-editor',
 			);
 			wp_enqueue_script( 'astra-react-customizer-controls', ASTRA_THEME_URI . 'inc/customizer/react/build/index.js', $editor_dependencies, ASTRA_THEME_VERSION, true );
 		}
@@ -805,7 +811,7 @@ if ( ! class_exists( 'Astra_Customizer' ) ) {
 
 			?>
 
-			<option value="inherit"><?php esc_attr_e( 'Default System Font', 'astra' ); ?></option>
+			<option value="inherit"><?php esc_html_e( 'Default System Font', 'astra' ); ?></option>
 			<optgroup label="Other System Fonts">
 
 			<?php
@@ -816,7 +822,7 @@ if ( ! class_exists( 'Astra_Customizer' ) ) {
 			foreach ( $system_fonts as $name => $variants ) {
 				?>
 
-				<option value="<?php echo esc_attr( $name ); ?>" ><?php echo esc_attr( $name ); ?></option>
+				<option value="<?php echo esc_attr( $name ); ?>" ><?php echo esc_html( $name ); ?></option>
 				<?php
 			}
 
@@ -832,7 +838,7 @@ if ( ! class_exists( 'Astra_Customizer' ) ) {
 				$category = astra_get_prop( $single_font, '1' );
 
 				?>
-				<option value="<?php echo "'" . esc_attr( $name ) . "', " . esc_attr( $category ); ?>"><?php echo esc_attr( $name ); ?></option>
+				<option value="<?php echo "'" . esc_attr( $name ) . "', " . esc_attr( $category ); ?>"><?php echo esc_html( $name ); ?></option>
 
 				<?php
 			}

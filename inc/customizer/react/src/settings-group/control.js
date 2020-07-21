@@ -160,6 +160,7 @@ export const settingsGroupControl = wp.customize.astraControl.extend( {
 				fields_html += '<div id="tab-'+ key +'" class="tab">';
 
 				var result = control.generateFieldHtml( fields_data, field_values );
+				
 
 				fields_html += result.html;
 
@@ -175,7 +176,6 @@ export const settingsGroupControl = wp.customize.astraControl.extend( {
 			});
 
 			fields_html += '</div></div>';
-
 			ast_field_wrap.html( fields_html );
 
 			jQuery( "#" + clean_param_name + "-tabs" ).tabs();
@@ -206,7 +206,8 @@ export const settingsGroupControl = wp.customize.astraControl.extend( {
 				break;  
 
 				case "ast-color": 
-					control.initColor( ast_field_wrap, control_elem, control_type.name );
+				// console.log(control)
+					// control.initColor( ast_field_wrap, control_elem, control_type.name );
 				break;
 
 				case "ast-font": 
@@ -420,16 +421,19 @@ export const settingsGroupControl = wp.customize.astraControl.extend( {
 
 		var fields_html = '';
 		var control_types = [];
-
+		
 
 		_.each(fields_data, function (attr, index) {
 			
 
 			var new_value = ( wp.customize.control( 'astra-settings['+attr.name+']' ) ? wp.customize.control( 'astra-settings['+attr.name+']' ).params.value : '' ); 
-			// console.log( new_value )
 			var control = attr.control;
 			var template_id = "customize-control-" + control + "-content";
 			var template = wp.template(template_id);
+			console.log( attr )
+
+			console.log( template(attr) )
+
 			var value = new_value || attr.default;
 			attr.value = value;
 			var dataAtts = '';
@@ -526,35 +530,36 @@ export const settingsGroupControl = wp.customize.astraControl.extend( {
 
 		var control = this;
 		var picker = wrap.find('.customize-control-ast-color .ast-color-picker-alpha');
+		// console.log(wp.customize.controlConstructor)
+		picker = wp.customize.controlConstructor['ast-color']
+		// picker.wpColorPicker({
 
-		picker.wpColorPicker({
+		// 	change: function (event, ui) {
 
-			change: function (event, ui) {
-
-				if ('undefined' != typeof event.originalEvent || 'undefined' != typeof ui.color._alpha) {
+		// 		if ('undefined' != typeof event.originalEvent || 'undefined' != typeof ui.color._alpha) {
 				
-					var element = jQuery(event.target).closest('.wp-picker-input-wrap').find('.wp-color-picker')[0];
-					jQuery(element).val( ui.color.toString() );
-					name = jQuery(element).parents('.customize-control').attr('id');
-					name = name.replace( 'customize-control-', '' );
-					control.container.trigger( 'ast_settings_changed', [control, jQuery( element ), ui.color.toString(), name ] );
-				}
-			},
+		// 			var element = jQuery(event.target).closest('.wp-picker-input-wrap').find('.wp-color-picker')[0];
+		// 			jQuery(element).val( ui.color.toString() );
+		// 			name = jQuery(element).parents('.customize-control').attr('id');
+		// 			name = name.replace( 'customize-control-', '' );
+		// 			control.container.trigger( 'ast_settings_changed', [control, jQuery( element ), ui.color.toString(), name ] );
+		// 		}
+		// 	},
 
-			/**
-			 * @param {Event} event - standard jQuery event, produced by "Clear"
-			 * button.
-			 */
-			clear: function (event) {
-				var element = jQuery(event.target).closest('.wp-picker-input-wrap').find('.wp-color-picker')[0];
-				jQuery(element).val('');
+		// 	/**
+		// 	 * @param {Event} event - standard jQuery event, produced by "Clear"
+		// 	 * button.
+		// 	 */
+		// 	clear: function (event) {
+		// 		var element = jQuery(event.target).closest('.wp-picker-input-wrap').find('.wp-color-picker')[0];
+		// 		jQuery(element).val('');
 
-				name = jQuery(element).parents('.customize-control').attr('id');
-				name = name.replace( 'customize-control-', '' );
-				control.container.trigger( 'ast_settings_changed', [control, jQuery(element), '', name ] );
-				wp.customize.previewer.refresh();
-			}
-		});
+		// 		name = jQuery(element).parents('.customize-control').attr('id');
+		// 		name = name.replace( 'customize-control-', '' );
+		// 		control.container.trigger( 'ast_settings_changed', [control, jQuery(element), '', name ] );
+		// 		wp.customize.previewer.refresh();
+		// 	}
+		// });
 	},
 
 	initResponsiveColor: function( wrap, control_elem, name ) {
