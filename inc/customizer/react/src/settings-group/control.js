@@ -65,7 +65,7 @@ export const settingsGroupControl = wp.customize.astraControl.extend( {
 		});
 		
 		control.container.on( 'click', '.ast-toggle-desc-wrap .ast-adv-toggle-icon', function( e ) {
-			console.log(control);
+			// console.log(control);
 			e.preventDefault();
 			e.stopPropagation();
 			
@@ -181,16 +181,16 @@ export const settingsGroupControl = wp.customize.astraControl.extend( {
 				});
 
 				fields_html += '</div>';
-				ReactDOM.render(
-					<ColorComponent control={ result.control } customizer={ wp.customize }/>,
-					jQuery( '.ast-tab-content')[0]
-				);
+				// ReactDOM.render(
+				// 	<ColorComponent control={ result.control } customizer={ wp.customize }/>,
+				// 	jQuery( '.ast-tab-content')[0]
+				// );
 			});
 
 			fields_html += '</div></div>';
-			ast_field_wrap.html( fields_html );
+			// ast_field_wrap.html( fields_html );
 
-			console.log(jQuery('.ast-tab-content'))
+			// console.log(jQuery('.ast-tab-content'))
 			
 
 			jQuery( "#" + clean_param_name + "-tabs" ).tabs();
@@ -446,12 +446,12 @@ export const settingsGroupControl = wp.customize.astraControl.extend( {
 			var template_id = "customize-control-" + control + "-content";
 			var template = wp.template(template_id);
 			// console.log( attr )
-
-			// console.log( template(attr) )
-			// ReactDOM.render(
-			// 	<ColorComponent control={wp.customize.control( 'astra-settings['+attr.name+']' )} customizer={ wp.customize }/>,
-			// 	wp.customize.control( 'astra-settings['+attr.name+']' ).container[0]
-			// );
+			var controlObject = wp.customize.control( 'astra-settings['+attr.name+']' );
+			console.log( jQuery('.ast-fields-wrap') )
+			ReactDOM.render(
+				<ColorComponent control={controlObject} customizer={ wp.customize }/>,
+				jQuery('.ast-fields-wrap')[0]
+			);
 			var value = new_value || attr.default;
 			attr.value = value;
 			var dataAtts = '';
