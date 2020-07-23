@@ -329,6 +329,7 @@ add_filter( 'ninja_forms_affiliate_id', 'astra_filter_ninja_forms_comp_id' );
 /**
  * Change upgrade link for wpforms.
  *
+ * @since x.x.x
  * @param string $url upgrade launch page URL.
  * @return String updated upgrade link.
  */
