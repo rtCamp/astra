@@ -1,5 +1,5 @@
 /**
- * CSS code for showing the astra settings metabox in the editor view.
+ * CSS code for the astra settings metabox in the editor view.
  *
  * @package Astra
  * @since 2.6.0
@@ -8,7 +8,7 @@
 .block-editor-page #side-sortables #astra_settings_meta_box select { 
      min-width: 84%; padding: 3px 8px 3px 24px; height: 20px; 
     }      
-    
+
 .block-editor-page #normal-sortables #astra_settings_meta_box select {
          min-width: 200px; 
     }
