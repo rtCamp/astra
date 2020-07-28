@@ -219,10 +219,10 @@ if ( ! class_exists( 'BSF_Analytics' ) ) {
 				}
 
 				/* translators: %s product name */
-				$notice_string = __( 'Want to help make <strong>%1s</strong> even more awesome? Allow us to collect non-sensitive diagnostic data and usage information. ' );
+				$notice_string = __( 'Want to help make <strong>%1s</strong> even more awesome? Allow us to collect non-sensitive diagnostic data and usage information. ', 'astra' );
 
 				if ( is_multisite() ) {
-					$notice_string .= __( 'This will be applicable for all sites from the network.' );
+					$notice_string .= __( 'This will be applicable for all sites from the network.', 'astra' );
 				}
 
 				$language_dir = is_rtl() ? 'rtl' : 'ltr';
@@ -254,7 +254,7 @@ if ( ! class_exists( 'BSF_Analytics' ) ) {
 									'bsf_analytics_source' => $key,
 								)
 							),
-							__( 'Yes! Allow it' ),
+							__( 'Yes! Allow it', 'astra' ),
 							add_query_arg(
 								array(
 									$key . '_analytics_optin' => 'no',
@@ -263,7 +263,7 @@ if ( ! class_exists( 'BSF_Analytics' ) ) {
 								)
 							),
 							MONTH_IN_SECONDS,
-							__( 'No Thanks' )
+							__( 'No Thanks', 'astra' )
 						),
 						'show_if'                    => true,
 						'repeat-notice-after'        => false,
@@ -343,7 +343,7 @@ if ( ! class_exists( 'BSF_Analytics' ) ) {
 		public function every_two_days_schedule( $schedules ) {
 			$schedules['every_two_days'] = array(
 				'interval' => 2 * DAY_IN_SECONDS,
-				'display'  => __( 'Every two days' ),
+				'display'  => __( 'Every two days', 'astra' ),
 			);
 
 			return $schedules;
@@ -402,7 +402,7 @@ if ( ! class_exists( 'BSF_Analytics' ) ) {
 
 				add_settings_field(
 					$key . '-analytics-optin',       // Field ID.
-					__( 'Usage Tracking' ),       // Field title.
+					__( 'Usage Tracking', 'astra' ),       // Field title.
 					array( $this, 'render_settings_field_html' ), // Field callback function.
 					'general',
 					'default',                   // Settings page slug.
@@ -446,15 +446,15 @@ if ( ! class_exists( 'BSF_Analytics' ) ) {
 				<input id="<?php echo esc_attr( $args['id'] ); ?>" type="checkbox" value="1" name="<?php echo esc_attr( $args['name'] ); ?>" <?php checked( get_site_option( $args['name'], 'no' ), 'yes' ); ?>>
 				<?php
 				/* translators: %s Product title */
-				esc_html_e( sprintf( 'Allow %s products to track non-sensitive usage tracking data.', $args['title'] ) );// phpcs:ignore WordPress.WP.I18n.NonSingularStringLiteralText
+				esc_html_e( sprintf( 'Allow %s products to track non-sensitive usage tracking data.', $args['title'] ), 'astra' );// phpcs:ignore WordPress.WP.I18n.NonSingularStringLiteralText
 
 				if ( is_multisite() ) {
-					esc_html_e( ' This will be applicable for all sites from the network.' );
+					esc_html_e( ' This will be applicable for all sites from the network.', 'astra' );
 				}
 				?>
 			</label>
 			<?php
-			echo wp_kses_post( sprintf( '<a href="%1s" target="_blank" rel="noreferrer noopener">%2s</a>', esc_url( $args['usage_doc_link'] ), __( 'Learn More.' ) ) );
+			echo wp_kses_post( sprintf( '<a href="%1s" target="_blank" rel="noreferrer noopener">%2s</a>', esc_url( $args['usage_doc_link'] ), __( 'Learn More.', 'astra' ) ) );
 			?>
 			</fieldset>
 			<?php

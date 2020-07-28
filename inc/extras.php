@@ -441,10 +441,10 @@ $bsf_analytics = BSF_Analytics_Loader::get_instance();
 $bsf_analytics->set_entity(
 	array(
 		'astra' => array(
-			'product_name'   => 'Astra',
-			'path'           => ASTRA_THEME_DIR . 'admin/bsf-analytics',
-			'author'         => 'Brainstorm Force',
-			'time_to_display' => '+24 hours'
+			'product_name'    => 'Astra',
+			'path'            => ASTRA_THEME_DIR . 'admin/bsf-analytics',
+			'author'          => 'Brainstorm Force',
+			'time_to_display' => '+24 hours',
 		),
 	)
 );
