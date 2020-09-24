@@ -15,7 +15,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 /**
  * Define Constants
  */
-define( 'ASTRA_THEME_VERSION', '2.5.5' );
+define( 'ASTRA_THEME_VERSION', '2.7.0' );
 define( 'ASTRA_THEME_SETTINGS', 'astra-settings' );
 define( 'ASTRA_THEME_DIR', trailingslashit( get_template_directory() ) );
 define( 'ASTRA_THEME_URI', trailingslashit( esc_url( get_template_directory_uri() ) ) );
@@ -26,6 +26,11 @@ define( 'ASTRA_THEME_URI', trailingslashit( esc_url( get_template_directory_uri(
  * This constant will be used to display the notice asking user to update the Astra addon to latest version.
  */
 define( 'ASTRA_EXT_MIN_VER', '2.6.0' );
+
+/**
+ * Prepare Astra Constants.
+ */
+require_once ASTRA_THEME_DIR . 'inc/class-astra-constants.php';
 
 /**
  * Setup helper functions of Astra.
@@ -110,12 +115,10 @@ if ( is_admin() ) {
 
 require_once ASTRA_THEME_DIR . 'inc/metabox/class-astra-meta-box-operations.php';
 
-
 /**
  * Customizer additions.
  */
 require_once ASTRA_THEME_DIR . 'inc/customizer/class-astra-customizer.php';
-
 
 /**
  * Compatibility
@@ -139,6 +142,7 @@ require_once ASTRA_THEME_DIR . 'inc/compatibility/class-astra-yoast-seo.php';
 require_once ASTRA_THEME_DIR . 'inc/addons/transparent-header/class-astra-ext-transparent-header.php';
 require_once ASTRA_THEME_DIR . 'inc/addons/breadcrumbs/class-astra-breadcrumbs.php';
 require_once ASTRA_THEME_DIR . 'inc/addons/heading-colors/class-astra-heading-colors.php';
+require_once ASTRA_THEME_DIR . 'inc/builder/class-astra-builder-loader.php';
 
 // Elementor Compatibility requires PHP 5.4 for namespaces.
 if ( version_compare( PHP_VERSION, '5.4', '>=' ) ) {
