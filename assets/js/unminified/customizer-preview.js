@@ -317,15 +317,32 @@ function astra_background_obj_css( wp_customize, bg_obj, ctrl_name, style ) {
 	if( '' === bg_color && '' === bg_img ) {
 		wp_customize.preview.send( 'refresh' );
 	}else{
-		if ( '' !== bg_img && '' !== bg_color) {
-			if ( undefined !== bg_color ) {
-				gen_bg_css = 'background-image: linear-gradient(to right, ' + bg_color + ', ' + bg_color + '), url(' + bg_img + ');';
+		if( undefined !== bg_obj['background-type'] && '' !== bg_obj['background-type'] ) {
+
+			if ( ( 'color' === bg_obj['background-type'] ) ) {
+	
+				if ( '' !== bg_img && '' !== bg_color && undefined !== bg_color && 'unset' !== bg_color ) {
+	
+					gen_bg_css = 'background-image: linear-gradient(to right, ' + bg_color + ', ' + bg_color + '), url(' + bg_img + ');';
+				}  else if ( undefined === bg_img || '' === bg_img || 'unset' === bg_img ) {
+	
+					gen_bg_css = 'background-color: ' + bg_color + ';';
+					
+				} 
+			} else if ( 'image' === bg_obj['background-type'] ) {
+	
+				if ( '' !== bg_img && '' !== bg_color && undefined !== bg_color && 'unset' !== bg_color && ! bg_color.includes("linear-gradient") ) {
+	
+					gen_bg_css = 'background-image: linear-gradient(to right, ' + bg_color + ', ' + bg_color + '), url(' + bg_img + ');';
+				}
+				if ( ( undefined === bg_color || '' === bg_color || 'unset' === bg_color || bg_color.includes("linear-gradient") ) && '' !== bg_img ) {
+					gen_bg_css = 'background-image: url(' + bg_img + ');';
+				}
+			} else if ( 'gradient' === bg_obj['background-type'] ) {
+				if ( '' !== bg_color && 'unset' !== bg_color ) {
+					gen_bg_css = 'background-image: ' + bg_color + ';';
+				}
 			}
-		}else if ( '' !== bg_img ) {
-			gen_bg_css = 'background-image: url(' + bg_img + ');';
-		}else if ( '' !== bg_color ) {
-			gen_bg_css = 'background-color: ' + bg_color + ';';
-			gen_bg_css += 'background-image: none;';
 		}
 		
 		if ( '' !== bg_img ) {
