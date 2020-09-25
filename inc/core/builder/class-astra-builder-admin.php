@@ -371,7 +371,6 @@ if ( ! class_exists( 'Astra_Builder_Admin' ) ) {
 				'mobile-menu-style',
 			);
 		}
-
 	}
 
 	/**

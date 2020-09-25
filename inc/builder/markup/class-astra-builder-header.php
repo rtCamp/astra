@@ -83,8 +83,6 @@ if ( ! class_exists( 'Astra_Builder_Header' ) ) {
 				add_action( 'astra_header_social', array( $this, 'header_social' ) );
 
 				add_action( 'astra_header_mobile_trigger', array( $this, 'header_mobile_trigger' ) );
-
-				add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_styles' ) );
 			}
 
 			add_action( 'astra_site_identity', array( $this, 'site_identity' ) );
@@ -218,19 +216,6 @@ if ( ! class_exists( 'Astra_Builder_Header' ) ) {
 		 */
 		public function header_social() {
 			Astra_Builder_UI_Controller::render_social_icon();
-		}
-
-		/**
-		 * Add header styles.
-		 */
-		public function enqueue_styles() {
-
-			wp_enqueue_style(
-				'astra-header',
-				ASTRA_THEME_URI . 'inc/assets/css/ast-builder-frontend.css',
-				array(),
-				ASTRA_THEME_VERSION
-			);
 		}
 
 		/**

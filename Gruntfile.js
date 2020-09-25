@@ -133,11 +133,19 @@ module.exports = function (grunt) {
                         'inc/assets/css/block-editor-styles.css': 'sass/admin/block-editor-styles.scss',
                     },
 
-                    /* Common Style */
+                    /* Common Style with old Header Footer Style */
                     {
                         expand: true,
                         cwd: 'sass/',
                         src: ['style.scss'],
+                        dest: 'assets/css/unminified',
+                        ext: '.css'
+                    },
+                    /* Common Style without Old Header Footer Style */
+                    {
+                        expand: true,
+                        cwd: 'sass/',
+                        src: ['frontend.scss'],
                         dest: 'assets/css/unminified',
                         ext: '.css'
                     },
