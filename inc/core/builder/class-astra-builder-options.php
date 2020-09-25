@@ -1089,6 +1089,7 @@ function astra_hf_builder_customizer_defaults( $defaults ) {
 		'left'   => 1,
 	);
 	$defaults['mobile-header-toggle-border-color']    = '#eeeeee';
+	$defaults['mobile-header-toggle-border-radius'] = 2;
 
 	// HTML Footer defaults.
 	for ( $index = 1; $index <= Astra_Builder_Helper::$num_of_footer_html; $index++ ) {
