@@ -1,16 +1,12 @@
 /* jshint esversion: 6 */
 import PropTypes from 'prop-types';
-import classnames from 'classnames';
-import ResponsiveControl from '../common/responsive.js';
-import Icons from '../common/icons.js';
 import { ReactSortable } from "react-sortablejs";
-import uniqueId from 'lodash/uniqueId';
 
 import ItemComponent from './item-component';
 
 const { __ } = wp.i18n;
 
-const { ButtonGroup, Dashicon, Tooltip, Popover, Button, SelectControl } = wp.components;
+const { ButtonGroup, Popover, Button, SelectControl } = wp.components;
 
 const { Component, Fragment } = wp.element;
 class SocialComponent extends Component {
@@ -317,7 +313,6 @@ class SocialComponent extends Component {
 							} }
 						>
 							{ __( 'Add Social Icon', 'astra' ) }
-							<Dashicon icon="plus"/>
 						</Button> }
 					</div>
 				) }

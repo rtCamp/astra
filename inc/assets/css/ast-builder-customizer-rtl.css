@@ -7,7 +7,7 @@
     opacity: 0.4;
 }
 
-.customize-control-ast-builder-header-control .ahfb-builder-tab-toggle {
+.customize-control-ast-builder-header-control .ahfb-builder-tab-toggle, .customize-control-ast-builder-header-control .ahfb-builder-section-shortcut {
     font-size: 13px;
     -webkit-box-align: center;
     align-items: center;
@@ -22,11 +22,19 @@
     background: #eeeeee;
     border: 1px solid #dddddd;
     border-bottom-color: #eeeeee;
-    padding: 4px 15px 4px 20px;
+    padding: 4px 15px 2px 20px;
     border-radius: 0 5px 0 0;
 }
 
-.customize-control-ast-builder-header-control .ahfb-builder-tab-toggle:hover {
+.customize-control-ast-builder-header-control .ahfb-builder-section-shortcut {
+    left: 130px;
+    border-bottom: none;
+    padding: 8px 10px 7px 12px;
+    border-radius: 5px 5px 0 0;
+    margin-left: 12px;
+}
+
+.customize-control-ast-builder-header-control .ahfb-builder-tab-toggle:hover, .customize-control-ast-builder-header-control .ahfb-builder-section-shortcut:hover {
     background: #eeeeee;
     color: #0073aa;
     border-color: #dddddd;
@@ -41,7 +49,7 @@
     display: none;
 }
 
-.customize-control-ast-builder-header-control .ahfb-builder-tab-toggle span.dashicons {
+.customize-control-ast-builder-header-control .ahfb-builder-tab-toggle span.dashicons, .customize-control-ast-builder-header-control .ahfb-builder-section-shortcut span.dashicons {
     font-size: 12px;
     vertical-align: middle;
     line-height: 20px;
@@ -196,18 +204,14 @@
     right: calc(-30px + -1.5rem);
 }
 
-#kt-scroll-up .customize-partial-edit-shortcut {
-    display: none;
-}
-
 /*------------------------------------------------------------------------------------------------------------------*/
 
-#customize-control-astra-settings-header-sticky-link {
+#customize-control-astra-settings-header-sticky-link + #customize-control-astra-settings-header-transparant-link {
     margin-top: 0;
 }
 
 /*controls.css*/
-.customize-control-astra_builder_control {	
+.customize-control-astra_builder_control {
     border: 0 !important;
 }
 
@@ -763,6 +767,12 @@
     right: 0;
 }
 
+.ahfb-popover-builder-list .ahfb-all-coponents-used {
+    width: inherit;
+    text-align: center;
+    font-weight: 400;
+}
+
 .ahfb-builder-area {
     position: relative;
 }
@@ -818,8 +828,8 @@ li#customize-control-astra-settings-header-desktop-items, li#customize-control-a
     bottom: auto;
 }
 
-.ahfb-builder-group .ahfb-builder-area:nth-child(4) .ahfb-builder-add-item .components-popover.ahfb-popover-add-builder, .ahfb-builder-group .ahfb-builder-area:nth-child(5) .ahfb-builder-add-item .components-popover.ahfb-popover-add-builder {
-    right: 0 !important;
+.ahfb-builder-group .ahfb-builder-area:nth-child(3) .ahfb-builder-add-item.center-on-left .components-popover.ahfb-popover-add-builder, .ahfb-builder-group .ahfb-builder-area:nth-child(4) .ahfb-builder-add-item .components-popover.ahfb-popover-add-builder, .ahfb-builder-group .ahfb-builder-area:nth-child(5) .ahfb-builder-add-item .components-popover.ahfb-popover-add-builder {
+    right: 25% !important;
 }
 
 #customize-control-astra-settings-header-mobile-items .components-popover.ahfb-popover-add-builder[data-x-axis="center"] {
@@ -959,29 +969,6 @@ li#customize-control-astra-settings-header-desktop-items, li#customize-control-a
     align-items: center;
     letter-spacing: 0.1px;
     line-height: 18px;
-}
-
-.ahfb-control-field .components-button.ahfb-reset {
-    height: 18px;
-    padding: 0 5px;
-    margin-left: 0;
-    margin-right: -10px;
-    opacity: 0.5;
-}
-
-.ahfb-control-field .components-button.ahfb-reset svg {
-    width: 12px;
-    height: 12px;
-}
-
-.ahfb-control-field .components-button.ahfb-reset:disabled {
-    opacity: 0;
-}
-
-.ahfb-control-field .components-button.ahfb-reset:not(:disabled):hover {
-    opacity: 1;
-    color: #007cba;
-    box-shadow: none !important;
 }
 
 .ahfb-sorter-drop-social_item_group .ahfb-radio-container-control {
@@ -1238,21 +1225,6 @@ li#customize-control-astra-settings-header-desktop-items, li#customize-control-a
     width: 16px;
 }
 
-.measure-input-wrap {
-    flex-grow: 0;
-    display: flex;
-    flex-direction: column;
-    padding-left: 5px;
-}
-
-.measure-input-wrap small {
-    padding-right: 3px;
-}
-
-.measure-input-wrap input.measure-inputs {
-    border: 1px solid #e2e4e7
-}
-
 .ahfb-radio-container-control .components-button.is-tertiary svg {
     width: 100%;
     height: 100%;
@@ -1264,7 +1236,7 @@ li#customize-control-astra-settings-header-desktop-items, li#customize-control-a
     height: 49px;
 }
 
-#customize-control-astra-settings-header-trigger-icon .components-button.is-tertiary.active-radio svg {
+#customize-control-astra-settings-header-trigger-icon .components-button.is-tertiary.active-radio svg, #customize-control-astra-settings-header-trigger-icon .components-button.is-tertiary svg {
     width: 50px;
     height: 49px;
 }
@@ -1435,12 +1407,6 @@ li#customize-control-astra-settings-header-desktop-items, li#customize-control-a
     padding: 0 12px 2px;
 }
 
-.ahfb-social-add-area .ahfb-sorter-add-item svg {
-    width: 14px;
-    height: 14px;
-    margin: 4px 5px 0 0;
-}
-
 .ahfb-sorter-row {
     margin-bottom: 16px;
 }
@@ -1449,22 +1415,6 @@ li#customize-control-astra-settings-header-desktop-items, li#customize-control-a
     display: block;
     margin-bottom: 20px;
     height: auto;
-}
-
-.social-custom-image {
-    display: flex;
-    margin-bottom: 20px;
-    align-items: center;
-    justify-content: space-around;
-}
-
-.social-custom-image .components-button.remove-image.is-destructive {
-    color: #b52727;
-}
-
-.ahfb-social-image {
-    max-width: 50px;
-    padding-left: 20px;
 }
 
 .ahfb-sorter-item-panel-content .ahfb-radio-container-control .components-button.is-tertiary {
@@ -1496,11 +1446,7 @@ button.components-button.ahfb-sorter-item-expand {
 }
 
 @media (max-width: 1660px) {
-    .measure-input-wrap {
-        padding-left: 2px;
-    }
-
-    .measure-input-wrap input.measure-inputs, .ahfb-locked .components-button.is-single, .ahfb-range-control .components-button {
+    .ahfb-locked .components-button.is-single, .ahfb-range-control .components-button {
         padding: 0 2px;
     }
 
@@ -1596,7 +1542,7 @@ button.components-button.ahfb-sorter-item-expand {
     background: unset;
 }
 
-.components-button-group.ahfb-radio-container-control .components-button.is-tertiary.active-radio svg {
+.components-button-group.ahfb-radio-container-control .components-button.is-tertiary.active-radio svg, .active-radio .ahfb-icon-set svg {
     background: #ffffff;
     border-radius: 3px;
     box-shadow: 0 0 3px 0px rgba(0, 133, 186, 0.67);
@@ -1609,11 +1555,11 @@ button.components-button.ahfb-sorter-item-expand {
     box-shadow: unset;
 }
 
-.ahfb-radio-icon-control .components-button-group.ahfb-radio-container-control .components-button.is-tertiary svg rect, .ahfb-radio-icon-control .components-button-group.ahfb-radio-container-control .components-button.is-tertiary svg path {
+.ahfb-radio-icon-control .components-button-group.ahfb-radio-container-control .components-button.is-tertiary svg rect, .ahfb-radio-icon-control .components-button-group.ahfb-radio-container-control .components-button.is-tertiary svg path, .ahfb-icon-set svg {
     fill: rgb(160 174 192);
 }
 
-.ahfb-radio-icon-control .components-button-group.ahfb-radio-container-control .components-button.is-tertiary.active-radio svg rect,.ahfb-radio-icon-control  .components-button-group.ahfb-radio-container-control .components-button.is-tertiary.active-radio svg path {
+.ahfb-radio-icon-control .components-button-group.ahfb-radio-container-control .components-button.is-tertiary.active-radio svg rect, .ahfb-radio-icon-control  .components-button-group.ahfb-radio-container-control .components-button.is-tertiary.active-radio svg path, .active-radio .ahfb-icon-set svg, .active-radio .ahfb-icon-set svg {
     fill: #007cba;
 }
 
@@ -1720,6 +1666,10 @@ button.components-button.ahfb-sorter-item-expand {
     grid-template-columns: 1fr 1fr;
     column-gap: 10px;
     row-gap: 10px;
+}
+
+.ahfb-builder-mode-footer .ast-grid-row-layout-6-equal {
+    grid-template-columns: repeat( 6, 1fr );
 }
 
 .ahfb-builder-mode-footer .ast-grid-row-layout-5-equal {

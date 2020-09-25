@@ -82,7 +82,7 @@ final class Astra_Builder_Customizer {
 
 		add_action( 'customize_preview_init', array( $this, 'enqueue_customizer_preview_scripts' ) );
 
-		if ( ! Astra_Builder_Helper::is_header_footer_builder( 'astra-hf-builder' ) ) {
+		if ( ! Astra_Constants::$is_new_hfb_activated ) {
 			return;
 		}
 
@@ -111,6 +111,7 @@ final class Astra_Builder_Customizer {
 	 */
 	public function update_default_wp_configs( $wp_customize ) {
 
+		$wp_customize->get_control( 'custom_logo' )->priority     = 2;
 		$wp_customize->get_control( 'blogname' )->priority        = 7;
 		$wp_customize->get_control( 'site_icon' )->priority       = 16;
 		$wp_customize->get_control( 'blogdescription' )->priority = 11;
@@ -513,6 +514,25 @@ final class Astra_Builder_Customizer {
 			self::$dependency_arr[ astra_get_prop( $config, 'name' ) ] = astra_get_prop( $config, 'required' );
 		}
 
+		if( 'image' === $config['type'] ) {
+			// This control depends upon default configs hence keeping it as it is.
+			$instance = Astra_Customizer_Control_Base::get_control_instance( astra_get_prop( $config, 'control' ) );
+
+			// Forwarding to the DOM as default control.
+			if( 'title_tagline' !== $config['section'] ) {
+				self::$js_configs ['wp_defaults'][ astra_get_prop( $config, 'name' ) ] = $config['section'];
+				$config['section'] = 'title_tagline';
+			}
+
+			if ( false !== $instance ) {
+				$wp_customize->add_control(
+					new $instance( $wp_customize, astra_get_prop( $config, 'name' ), $config )
+				);
+			}
+
+			return;
+		}
+
 		$config['id']       = astra_get_prop( $config, 'name' );
 		$config['settings'] = array( 'default' => astra_get_prop( $config, 'name' ) );
 		$config             = self::bypass_control_configs( $config );
@@ -842,8 +862,6 @@ final class Astra_Builder_Customizer {
 		require_once $header_config_path . '/class-astra-customizer-off-canvas-configs.php';
 		require_once $header_config_path . '/class-astra-customizer-primary-header-configs.php';
 		require_once $header_config_path . '/class-astra-customizer-site-identity-configs.php';
-		require_once $header_config_path . '/class-astra-customizer-sticky-header-builder-configs.php';
-		require_once $header_config_path . '/class-astra-customizer-transparent-header-builder-configs.php';
 		require_once $header_config_path . '/class-astra-header-button-component-configs.php';
 		require_once $header_config_path . '/class-astra-header-html-component-configs.php';
 		require_once $header_config_path . '/class-astra-header-menu-component-configs.php';
@@ -878,7 +896,7 @@ final class Astra_Builder_Customizer {
 	 *
 	 * @return mixed|void
 	 */
-	public static function ast_get_contexts() {
+	public static function get_contexts() {
 		// Return contexts.
 		return apply_filters( 'astra_customizer_context', self::$contexts );
 	}
@@ -888,7 +906,7 @@ final class Astra_Builder_Customizer {
 	 *
 	 * @return mixed|void
 	 */
-	public static function ast_get_choices() {
+	public static function get_choices() {
 		// Return contexts.
 		return apply_filters( 'astra_customizer_choices', self::$choices );
 	}
@@ -900,33 +918,18 @@ final class Astra_Builder_Customizer {
 	 */
 	public function enqueue_customizer_scripts() {
 
-		if ( SCRIPT_DEBUG ) {
+		// Localize variables for Dev mode > Customizer JS.
+		wp_localize_script(
+			SCRIPT_DEBUG ? 'astra-custom-control-react-script' : 'astra-custom-control-script',
+			'AstraBuilderCustomizerData',
+			array(
+				'contexts'                 => self::get_contexts(),
+				'choices'                  => self::get_choices(),
+				'js_configs'               => self::$js_configs,
+				'is_header_footer_builder' => Astra_Constants::$is_new_hfb_activated,
+			)
+		);
 
-			// Localize variables for Dev mode > Customizer JS.
-			wp_localize_script(
-				'astra-custom-control-react-script',
-				'AstraBuilderCustomizerData',
-				array(
-					'contexts'    => self::ast_get_contexts(),
-					'choices'     => self::ast_get_choices(),
-					'js_configs'  => self::$js_configs,
-					'is_header_footer_builder' => Astra_Builder_Helper::is_header_footer_builder(),
-				)
-			);
-		} else {
-
-			// Localize variables for User's view > Customizer JS.
-			wp_localize_script(
-				'astra-custom-control-script',
-				'AstraBuilderCustomizerData',
-				array(
-					'contexts'    => self::ast_get_contexts(),
-					'choices'     => self::ast_get_choices(),
-					'js_configs'  => self::$js_configs,
-					'is_header_footer_builder' => Astra_Builder_Helper::is_header_footer_builder(),
-				)
-			);
-		}
 		// Enqueue Builder CSS.
 		wp_enqueue_style(
 			'ahfb-customizer-style',

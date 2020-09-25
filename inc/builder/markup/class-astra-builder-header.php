@@ -37,7 +37,7 @@ if ( ! class_exists( 'Astra_Builder_Header' ) ) {
 		 */
 		public function __construct() {
 
-			if ( Astra_Builder_Helper::is_header_footer_builder() ) {
+			if ( Astra_Constants::$is_new_hfb_activated ) {
 				$this->remove_existing_actions();
 
 				add_action( 'astra_header', array( $this, 'header_builder_markup' ) );
@@ -198,15 +198,6 @@ if ( ! class_exists( 'Astra_Builder_Header' ) ) {
 		public function remove_existing_actions() {
 			remove_action( 'astra_masthead', 'astra_masthead_primary_template' );
 			remove_action( 'astra_header', 'astra_header_markup' );
-
-			if ( method_exists( 'Astra_Ext_Header_Sections_Markup', 'get_instance' ) ) {
-				remove_action( 'astra_masthead', array( Astra_Ext_Header_Sections_Markup::get_instance(), 'above_header_html_markup_loader' ), 9 );
-				remove_action( 'astra_masthead', array( Astra_Ext_Header_Sections_Markup::get_instance(), 'below_header_html_markup_loader' ), 11 );
-			}
-
-			if ( method_exists( 'Astra_Ext_Sticky_Header_Markup', 'get_instance' ) ) {
-				remove_action( 'astra_header', array( Astra_Ext_Sticky_Header_Markup::get_instance(), 'fixed_header_markup' ), 11 );
-			}
 
 			remove_action( 'astra_masthead_content', 'astra_primary_navigation_markup', 10 );
 

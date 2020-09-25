@@ -73,12 +73,12 @@ class Astra_Customizer_Header_Builder_Configs extends Astra_Customizer_Config_Ba
 			'section' => 'title_tagline',
 		),
 		'menu-1'         => array(
-			'name'    => 'Mobile Menu',
+			'name'    => 'Primary Menu',
 			'icon'    => 'menu',
 			'section' => 'section-hb-menu-1',
 		),
 		'menu-2'         => array(
-			'name'    => 'Mobile Navigation',
+			'name'    => 'Secondary Menu',
 			'icon'    => 'menu',
 			'section' => 'section-hb-menu-2',
 		),
@@ -109,8 +109,6 @@ class Astra_Customizer_Header_Builder_Configs extends Astra_Customizer_Config_Ba
 	 * @return Array Astra Customizer Configurations with updated configurations.
 	 */
 	public function register_configuration( $configurations, $wp_customize ) {
-
-		$astra_addon_status = defined( 'ASTRA_EXT_VER' );
 
 		for ( $index = 1; $index <= Astra_Constants::$num_of_header_button; $index++ ) {
 
@@ -294,7 +292,7 @@ class Astra_Customizer_Header_Builder_Configs extends Astra_Customizer_Config_Ba
 				'choices'         => self::$header_mobile_items,
 				'transport'       => 'postMessage',
 				'partial'         => array(
-					'selector'            => '#main-header',
+					'selector'            => '#masthead',
 					'container_inclusive' => false,
 					'render_callback'     => array( 'Astra_Builder_Header', 'mobile_header' ),
 				),
@@ -429,7 +427,7 @@ class Astra_Customizer_Header_Builder_Configs extends Astra_Customizer_Config_Ba
 
 		$_configs = array_merge( $_configs, Astra_Builder_Base_Configuration::prepare_advanced_tab( 'section-header-builder-layout' ) );
 
-		if ( $astra_addon_status ) {
+		if ( defined( 'ASTRA_EXT_VER' ) && Astra_Ext_Extension::is_active( 'sticky-header' ) ) {
 			/**
 			 * Option: Header Transparant
 			 */
