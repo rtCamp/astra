@@ -141,7 +141,7 @@ module.exports = function (grunt) {
                         dest: 'assets/css/unminified',
                         ext: '.css'
                     },
-                    /* Common Style without Old Header Footer Style */
+                    /* Common Style with new Header-Footer Builder Style */
                     {
                         expand: true,
                         cwd: 'sass/',
