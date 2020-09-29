@@ -489,9 +489,10 @@ if ( ! function_exists( 'astra_update_option' ) ) {
 
 		do_action( "astra_before_update_option_{$option}", $value, $option );
 
-		// Get all customizer options.
+		// Get all customizer options. 
+		// Added wpml filter for compatibility with string translation plugin.
 		$theme_options = class_exists( 'SitePress' ) ? maybe_unserialize( apply_filters( 'wpml_unfiltered_admin_string', get_option( ASTRA_THEME_SETTINGS ), ASTRA_THEME_SETTINGS ) ) : get_option( ASTRA_THEME_SETTINGS );
-		
+
 		// Update value in options array.
 		$theme_options[ $option ] = $value;
 
