@@ -3474,8 +3474,8 @@ body .entry-content .wp-block-latest-posts li {
   width: 100%;
 }
 
-ul.astra-footer-vertical-menu {
-  display: block;
+.footer-nav-wrap .astra-footer-vertical-menu {
+  display: grid;
 }
 
 #astra-footer-menu {

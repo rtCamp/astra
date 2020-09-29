@@ -339,8 +339,8 @@
 .ast-footer-social-wrap {
 	width: 100%;
 }
-ul.astra-footer-vertical-menu {
-	display: block;
+.footer-nav-wrap .astra-footer-vertical-menu {
+	display: grid;
 }
 #astra-footer-menu {
 	margin: 0;
