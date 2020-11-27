@@ -2,13 +2,10 @@
 	const $window = $(window),
 		$body = $('body');
 
-	var expandedSection = [];
-
-	const context_less_sections = [ 'section-colors-body', 'section-colors-content', 'section-buttons',
-		'section-typography', 'section-body-typo', 'section-content-typo', 'sidebar-widgets-header-widget-', 'sidebar-widgets-footer-widget-',
-		'sidebar-widgets-sidebar-', 'sidebar-widgets-ast-widgets', 'static_front_page',
-		'custom_css', 'menu_locations', 'nav_menu'
-	];
+	const defaultTab = 'general';
+	var currentSection = null;
+	var currentTab = defaultTab;
+	var currentBuilder = null;
 
 	/**
 	 * Resize Preview Frame when show / hide Builder.
@@ -32,8 +29,6 @@
 		} else {
 			api.previewer.container.css('bottom', '');
 		}
-		$section.css( 'overflow', 'visible' );
-		$footer.css( 'overflow', 'visible' );
 	}
 
 	/**
@@ -44,6 +39,18 @@
 		let builder = panel.id.includes("-header-") ? 'header' : 'footer';
 		var section = api.section('section-' + builder + '-builder');
 
+		const init_control = function (control) {
+
+			if ('resolved' === control.deferred.embedded.state()) {
+				return;
+			}
+			control.renderContent();
+			control.deferred.embedded.resolve(); // This triggers control.ready().
+
+			// Fire event after control is initialized.
+			control.container.trigger('init');
+
+		}
 
 		if (section) {
 
@@ -52,31 +59,17 @@
 
 			panel.expanded.bind(function (isExpanded) {
 
-				// Lazy load section on panel expand.
-				AstCustomizerAPI.setControlContextBySection(section);
-				AstCustomizerAPI.setControlContextBySection(section_layout);
+				currentBuilder = section;
+				currentSection = section_layout;
+
+				initiate_tabs(currentSection, currentTab);
+				initiate_tabs(currentBuilder, currentTab);
 
 				_.each(section.controls(), function (control) {
-
-					if ('resolved' === control.deferred.embedded.state()) {
-						return;
-					}
-					control.renderContent();
-					control.deferred.embedded.resolve(); // This triggers control.ready().
-
-					// Fire event after control is initialized.
-					control.container.trigger('init');
+					init_control(control);
 				});
 				_.each(section_layout.controls(), function (control) {
-
-					if ('resolved' === control.deferred.embedded.state()) {
-						return;
-					}
-					control.renderContent();
-					control.deferred.embedded.resolve(); // This triggers control.ready().
-
-					// Fire event after control is initialized.
-					control.container.trigger('init');
+					init_control(control);
 				});
 
 				if (isExpanded) {
@@ -85,7 +78,7 @@
 				} else {
 
 					// Setting general context when collapsed.
-					api.state('astra-customizer-tab').set('general');
+					api.state('astra-customizer-tab').set(defaultTab);
 
 					$body.removeClass('ahfb-' + builder + '-builder-is-active');
 					$section.removeClass('ahfb-' + builder + '-builder-active');
@@ -100,6 +93,63 @@
 				resizePreviewer();
 			});
 		}
+	};
+
+	var get_setting = function (settingName) {
+
+		switch (settingName) {
+			case 'ast_selected_device':
+				return api.previewedDevice.get();
+			case 'ast_selected_tab':
+				return currentTab;
+			default:
+				return api(settingName).get();
+		}
+	}
+
+	var is_displayed = function (rules) {
+
+		let relation = 'AND',
+			displayed = true;
+
+		// Each rule iteration
+		_.each(rules, function (rule, i) {
+
+			var result = false,
+				setting = get_setting(rule['setting']);
+
+			if (undefined !== setting) {
+				var operator = rule['operator'],
+					comparedValue = rule['value'],
+					currentValue = setting;
+
+				if (undefined == operator || '=' == operator) {
+					operator = '==';
+				}
+
+				switch (operator) {
+					case 'in':
+						result = 0 <= comparedValue.indexOf(currentValue);
+						break;
+
+					default:
+						result = comparedValue == currentValue;
+						break;
+				}
+			}
+
+			switch (relation) {
+				case 'OR':
+					displayed = displayed || result;
+					break;
+
+				default:
+					displayed = displayed && result;
+					break;
+			}
+		});
+
+		return displayed;
 	};
 
 	/**
@@ -191,10 +241,6 @@
 			}
 		},
 
-		addControlContext: function (section_id, control_id) {
-			set_context(control_id);
-		},
-
 		registerControlsBySection: function (section) {
 
 			if ('undefined' != typeof AstraBuilderCustomizerData) {
@@ -208,46 +254,28 @@
 			}
 		},
 
-		setControlContextBySection: function (section) {
-
-			// Skip setting context when no tabs added inside section.
-			if( expandedSection.includes(section.id) || context_less_sections.includes(section.id)  ) {
-				return ;
-			}
+		setControlVisibilityBySection: function (section) {
 
 			if ('undefined' != typeof AstraBuilderCustomizerData) {
-				let controls = AstraBuilderCustomizerData.js_configs.controls[section.id] || [];
-				if (controls) {
-					for (let i = 0; i < controls.length; i++) {
-						let control = controls[i];
-						this.addControlContext(section.id, control.id);
+				$.each(section.controls(), function (id, control) {
+					let context = AstraBuilderCustomizerData.contexts[control.id];
+					if (context) {
+						if (is_displayed(context)) {
+							api.control(control.id).activate({duration: 0});
+						} else {
+							api.control(control.id).deactivate({duration: 0});
+						}
+					} else {
+						if (!control.id.startsWith('astra-settings')) { // WP Configs
+							if (defaultTab === currentTab) {
+								api.control(control.id).activate({duration: 0});
+							} else {
+								api.control(control.id).deactivate({duration: 0});
+							}
+						}
 					}
-				}
-				expandedSection.push( section.id );
+				});
 			}
-		},
-
-		setDefaultControlContext: function () {
-
-			if( 'undefined' === typeof AstraBuilderCustomizerData ) {
-				return ;
-			}
-			let skip_context = AstraBuilderCustomizerData.js_configs.skip_context || [];
-			// Set tab status as general for all wp default controls.
-			$.each(api.settings.controls, function (id, data) {
-
-				if ( -1 != (skip_context.indexOf(id) ) ) {
-					// Do not init context if skipped.
-					return;
-				}
-
-				set_context(id, [
-					{
-						"setting": "ast_selected_tab",
-						"value": "general"
-					}
-				]);
-			});
 		},
 
 		initializeConfigs: function () {
@@ -256,7 +284,7 @@
 
 				let panels = AstraBuilderCustomizerData.js_configs.panels || [];
 				let sections = AstraBuilderCustomizerData.js_configs.sections || [];
-				let controls = Object.assign({}, AstraBuilderCustomizerData.js_configs.controls || [] ) ;
+				let controls = Object.assign({}, AstraBuilderCustomizerData.js_configs.controls || []);
 
 				for (const [panel_id, config] of Object.entries(panels)) {
 					AstCustomizerAPI.addPanel(panel_id, config);
@@ -272,7 +300,7 @@
 				// Add controls to third party sections.
 				for (const [section_id, config] of Object.entries(controls)) {
 
-					if( "undefined"  === typeof api.section(section_id)  ) {
+					if ("undefined" === typeof api.section(section_id)) {
 						continue;
 					}
 
@@ -300,7 +328,7 @@
 	 * Change description to tooltip.
 	 * @param ctrl
 	 */
-	function change_description_as_tooltip(ctrl) {
+	const change_description_as_tooltip = function (ctrl) {
 
 		var desc = ctrl.container.find(".customize-control-description");
 		if (desc.length) {
@@ -316,105 +344,14 @@
 	}
 
 	/**
-	 * Set context for all controls.
-	 * @param control_id
-	 * @param control_rules
-	 */
-	function set_context(control_id, control_rules = null) {
-
-		if ('undefined' != typeof AstraBuilderCustomizerData) {
-			let rules = control_rules ? control_rules : AstraBuilderCustomizerData.contexts[control_id];
-			if (rules) {
-				var getSetting = function (settingName) {
-
-					switch (settingName) {
-						case 'ast_selected_device':
-							return api.previewedDevice;
-						case 'ast_selected_tab':
-							return api.state('astra-customizer-tab');
-						default:
-							return api(settingName);
-					}
-				}
-				var initContext = function (element) {
-					var isDisplayed = function () {
-
-						var displayed = false,
-							relation = rules['relation'];
-
-						if ('OR' !== relation) {
-							relation = 'AND';
-							displayed = true;
-						}
-
-						// Each rule iteration
-						_.each(rules, function (rule, i) {
-
-							var result = false,
-								setting = getSetting(rule['setting']);
-
-							if (undefined !== setting) {
-								var operator = rule['operator'],
-									comparedValue = rule['value'],
-									currentValue = setting.get();
-								if (undefined == operator || '=' == operator) {
-									operator = '==';
-								}
-
-								switch (operator) {
-									case 'in':
-										result = 0 <= comparedValue.indexOf(currentValue);
-										break;
-
-									default:
-										result = comparedValue == currentValue;
-										break;
-								}
-							}
-
-							switch (relation) {
-								case 'OR':
-									displayed = displayed || result;
-									break;
-
-								default:
-									displayed = displayed && result;
-									break;
-							}
-						});
-
-						return displayed;
-					};
-					var setActiveState = function () {
-						element.active.set(isDisplayed());
-					};
-					_.each(rules, function (rule, i) {
-
-						var setting = getSetting(rule['setting']);
-
-						if (undefined !== setting) {
-							setting.bind(setActiveState);
-						}
-					});
-
-
-					//element.active.validate = isDisplayed; // Todo: Remove it later.
-					setActiveState();
-				};
-				api.control(control_id, initContext);
-			}
-		}
-	}
-
-	/**
 	 * Highliting the active componenet.
 	 * @param customizer_section
 	 */
-	function highlight_active_component(customizer_section) {
+	const highlight_active_component = function (customizer_section) {
 		var builder_items = $('.ahfb-builder-drop .ahfb-builder-item');
 		$.each(builder_items, function (i, val) {
 			var component_section = $(val).attr('data-section');
-			if (component_section === customizer_section.id && $( '#sub-accordion-section-' + component_section ).hasClass('open')) {
+			if (component_section === customizer_section.id && $('#sub-accordion-section-' + component_section).hasClass('open')) {
 				$(val).addClass('active-builder-item');
 			} else {
 				$(val).removeClass('active-builder-item');
@@ -422,16 +359,27 @@
 		});
 	}
 
+	const initiate_tabs = function (currentSection, currentTab) {
+
+		if (!currentSection) {
+			return;
+		}
+
+		AstCustomizerAPI.setControlVisibilityBySection(currentSection);
+		let $tabs = $('.ahfb-compontent-tabs-button:not(.ahfb-nav-tabs-button)');
+		$tabs.removeClass('nav-tab-active').filter('.ahfb-' + currentTab + '-tab').addClass('nav-tab-active');
+	}
+
 	/**
 	 * Highliting the active row.
 	 * @param customizer_section
 	 */
-	function highlight_active_row(customizer_section) {
+	const highlight_active_row = function (customizer_section) {
 		// Highlight builder rows.
 		var builder_rows = $('.ahfb-builder-items .ahfb-builder-areas');
 		$.each(builder_rows, function (i, val) {
 			var builder_row = $(val).attr('data-row-section');
-			if( builder_row === customizer_section.id && $( '#sub-accordion-section-' + builder_row ).hasClass('open') ) {
+			if (builder_row === customizer_section.id && $('#sub-accordion-section-' + builder_row).hasClass('open')) {
 				$(val).addClass('active-builder-row');
 			} else {
 				$(val).removeClass('active-builder-row');
@@ -442,21 +390,20 @@
 	/**
 	 * Set context using URL query params.
 	 */
-	function set_context_by_url_params() {
+	const set_context_by_url_params = function () {
 
-		let urlParams = new URLSearchParams( window.location.search );
-		let tab = urlParams.get( "context" );
+		let urlParams = new URLSearchParams(window.location.search);
+		let tab = urlParams.get("context");
 
-		if ( tab ) {
-
-			api.state('astra-customizer-tab').set( tab );
+		if (tab) {
+			currentTab = tab;
 		}
 	}
 
 	api.bind('ready', function () {
 
 		api.state.create('astra-customizer-tab');
-		api.state('astra-customizer-tab').set('general');
+		api.state('astra-customizer-tab').set(defaultTab);
 
 		// Set handler when custom responsive toggle is clicked.
 		$('#customize-theme-controls').on('click', '.ahfb-build-tabs-button:not(.ahfb-nav-tabs-button)', function (e) {
@@ -467,43 +414,59 @@
 		// Set handler when custom responsive toggle is clicked.
 		$('#customize-theme-controls').on('click', '.ahfb-compontent-tabs-button:not(.ahfb-nav-tabs-button)', function (e) {
 			e.preventDefault();
-			api.state('astra-customizer-tab').set($(this).attr('data-tab'));
-		});
+			currentTab = $(this).attr('data-tab');
+			initiate_tabs(currentSection, currentTab);
 
-		var setCustomTabElementsDisplay = function () {
-			var tabState = api.state('astra-customizer-tab').get(),
-				$tabs = $('.ahfb-compontent-tabs-button:not(.ahfb-nav-tabs-button)');
-			$tabs.removeClass('nav-tab-active').filter('.ahfb-' + tabState + '-tab').addClass('nav-tab-active');
-		}
-		// Refresh all responsive elements when previewedDevice is changed.
-		api.state('astra-customizer-tab').bind(setCustomTabElementsDisplay);
+			setTimeout(function () {
+				api.state('astra-customizer-tab').set(currentTab);
+			}, 50);
+
+		});
 
 		$window.on('resize', resizePreviewer);
 
 		AstCustomizerAPI.initializeConfigs();
 		api.section.each(function (section) {
 			section.expanded.bind(function (isExpanded) {
-				// Lazy Loaded Context.
-				AstCustomizerAPI.setControlContextBySection(api.section(section.id));
-				if ( ! isExpanded ) {
+
+				if (!isExpanded) {
+
 					// Setting general context when collapsed.
-					api.state('astra-customizer-tab').set('general');
+					setTimeout(function () {
+						api.state('astra-customizer-tab').set(defaultTab);
+					}, 50);
+
+
+				} else {
+
+					currentSection = api.section(section.id);
+
+					setTimeout(function () {
+						api.state('astra-customizer-tab').set(currentTab);
+					}, 50);
+
+					initiate_tabs(currentSection, currentTab);
+
 				}
 
-				var customizer_section = api.section(section.id);
 				set_context_by_url_params();
 
 				_.each(section.controls(), function (control) {
-					highlight_active_component(customizer_section);
-					highlight_active_row(customizer_section);
+					highlight_active_component(currentSection);
+					highlight_active_row(currentSection);
 				});
+
 			});
 		});
+
 		AstCustomizerAPI.moveDefaultSection();
 
-		api.previewer.bind('ready', function () {
-			AstCustomizerAPI.setDefaultControlContext();
-		} );
+		api.previewedDevice.bind(function (new_device, old_device) {
+			if (old_device) {
+				initiate_tabs(currentSection, currentTab);
+				initiate_tabs(currentBuilder, currentTab);
+			}
+		});
 
 	});
 
