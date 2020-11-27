@@ -381,6 +381,7 @@
 
 		if( ! is_panel && ! currentSection.expanded() ) {
 			currentSection = currentLayoutSection;
+			AstCustomizerAPI.setControlVisibilityBySection(currentBuilder);
 		}
 
 

@@ -53,11 +53,10 @@
 			$this.hideEmptySections();
 
 			api.state('astra-customizer-tab').bind(checkDependencyOnTabChange);
-			const memoizedHasDependentControls = memoize(this.hasDependentControls);
 
 			api.bind('change', function (setting, data) {
 
-				var has_dependents = memoizedHasDependentControls(setting.id);
+				var has_dependents = $this.hasDependentControls(setting.id);
 
 				if (has_dependents) {
 
@@ -68,7 +67,7 @@
 			});
 		},
 
-		hasDependentControls: function (control_id) {
+		hasDependentControls: memoize( function (control_id) {
 
 			var check = false;
 
@@ -102,7 +101,7 @@
 
 			return check;
 
-		},
+		} ),
 
 		/**
 		 * Handles dependency for controls.
@@ -170,7 +169,7 @@
 		 * @access private
 		 * @method checkDependency
 		 */
-		checkContext: function (id) {
+		checkContext: memoize( function (id) {
 
 			if ('undefined' != typeof AstraBuilderCustomizerData) {
 
@@ -188,7 +187,7 @@
 				}
 			}
 			return true;
-		},
+		} ),
 
 		/**
 		 * Checks dependency condtions for controls
