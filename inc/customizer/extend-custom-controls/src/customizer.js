@@ -4,6 +4,7 @@
 
 	const defaultTab = 'general';
 	var currentSection = null;
+	var currentLayoutSection = null;
 	var currentTab = defaultTab;
 	var currentBuilder = null;
 
@@ -61,9 +62,10 @@
 
 				currentBuilder = section;
 				currentSection = section_layout;
+				currentLayoutSection = section_layout;
 
-				initiate_tabs(currentSection, currentTab);
-				initiate_tabs(currentBuilder, currentTab);
+				initiate_tabs(currentSection, currentTab, true);
+				initiate_tabs(currentBuilder, currentTab, true);
 
 				_.each(section.controls(), function (control) {
 					init_control(control);
@@ -257,8 +259,20 @@
 		setControlVisibilityBySection: function (section) {
 
 			if ('undefined' != typeof AstraBuilderCustomizerData) {
+
+
+				const is_astra_control = section.id.startsWith('section-') || 'title_tagline' === section.id ;
+
 				$.each(section.controls(), function (id, control) {
+
 					let context = AstraBuilderCustomizerData.contexts[control.id];
+
+					if( ! is_astra_control ) {
+
+						api.control(control.id).activate({duration: 0});
+						return ;
+					}
+
 					if (context) {
 						if (is_displayed(context)) {
 							api.control(control.id).activate({duration: 0});
@@ -359,15 +373,21 @@
 		});
 	}
 
-	const initiate_tabs = function (currentSection, currentTab) {
+	const initiate_tabs = function (currentSection, currentTab, is_panel = false) {
 
 		if (!currentSection) {
 			return;
 		}
 
-		AstCustomizerAPI.setControlVisibilityBySection(currentSection);
+		if( ! is_panel && ! currentSection.expanded() ) {
+			currentSection = currentLayoutSection;
+		}
+
+
 		let $tabs = $('.ahfb-compontent-tabs-button:not(.ahfb-nav-tabs-button)');
 		$tabs.removeClass('nav-tab-active').filter('.ahfb-' + currentTab + '-tab').addClass('nav-tab-active');
+
+		AstCustomizerAPI.setControlVisibilityBySection(currentSection);
 	}
 
 	/**
