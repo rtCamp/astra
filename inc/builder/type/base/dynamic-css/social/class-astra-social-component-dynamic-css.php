@@ -540,6 +540,13 @@ class Astra_Social_Component_Dynamic_CSS {
 		.ast-header-social-wrap .ast-builder-social-element:last-child {
 			margin-right: 0;
 		}
+		.ast-builder-layout-element .ast-footer-social-wrap .ast-builder-social-element:first-child {
+			margin-left: 0;
+		}
+		  
+		.ast-builder-layout-element .ast-footer-social-wrap .ast-builder-social-element:last-child {
+			margin-right: 0;
+		}
 		';
 	}
 }

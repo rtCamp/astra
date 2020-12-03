@@ -88,21 +88,6 @@
 		grid-template-columns: 1fr;
 	}
 }
-.ast-builder-layout-element {
-	align-items: center;
-	display: flex;
-	height: 100%;
-	.ast-footer-social-wrap {
-		.ast-builder-social-element {
-			&:first-child {
-				margin-left: 0;
-			}
-			&:last-child {
-				margin-right: 0;
-			}
-		}
-	}
-}
 .ast-builder-grid-row.ast-grid-center-col-layout-only {
 	display: flex;
 	height: 100%;
