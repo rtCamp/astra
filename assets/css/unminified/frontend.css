@@ -3219,21 +3219,6 @@ body .entry-content .wp-block-latest-posts li {
   grid-template-columns: 1fr;
 }
 
-.ast-builder-layout-element {
-  align-items: center;
-  -js-display: flex;
-  display: flex;
-  height: 100%;
-}
-
-.ast-builder-layout-element .ast-footer-social-wrap .ast-builder-social-element:first-child {
-  margin-left: 0;
-}
-
-.ast-builder-layout-element .ast-footer-social-wrap .ast-builder-social-element:last-child {
-  margin-right: 0;
-}
-
 .ast-builder-grid-row.ast-grid-center-col-layout-only {
   -js-display: flex;
   display: flex;
