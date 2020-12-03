@@ -3219,6 +3219,13 @@ body .entry-content .wp-block-latest-posts li {
   grid-template-columns: 1fr;
 }
 
+.ast-builder-layout-element {
+  align-items: center;
+  -js-display: flex;
+  display: flex;
+  height: 100%;
+}
+
 .ast-builder-grid-row.ast-grid-center-col-layout-only {
   -js-display: flex;
   display: flex;
