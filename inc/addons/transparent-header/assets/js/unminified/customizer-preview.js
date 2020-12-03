@@ -33,7 +33,7 @@
 
 			var dynamicStyle = ' body.ast-theme-transparent-header.ast-header-break-point .main-header-bar { border-bottom-width: ' + border + 'px } ';
 
-			dynamicStyle += 'body.ast-theme-transparent-header.ast-desktop .main-header-bar {';
+			dynamicStyle += '.ast-theme-transparent-header #ast-desktop-header > [CLASS*="-header-wrap"]:last-child {';
 			dynamicStyle += 'border-bottom-width: ' + border + 'px';
 			dynamicStyle += '}';
 
@@ -53,8 +53,8 @@
 
 			if ( color ) {
 
-				var dynamicStyle = ' body.ast-theme-transparent-header.ast-desktop .main-header-bar { border-bottom-color: ' + color + '; } ';
-					dynamicStyle += ' body.ast-theme-transparent-header.ast-header-break-point .main-header-bar { border-bottom-color: ' + color + '; } ';
+				var dynamicStyle = ' .ast-theme-transparent-header #ast-desktop-header > [CLASS*="-header-wrap"]:last-child { border-bottom-color: ' + color + '; } ';
+					dynamicStyle += ' .ast-theme-transparent-header #ast-desktop-header > [CLASS*="-header-wrap"]:last-child { border-bottom-color: ' + color + '; } ';
 
 				astra_add_dynamic_css( 'transparent-header-main-sep-color', dynamicStyle );
 			}
