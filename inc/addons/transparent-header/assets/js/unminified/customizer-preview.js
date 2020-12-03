@@ -54,7 +54,7 @@
 			if ( color ) {
 
 				var dynamicStyle = ' .ast-theme-transparent-header #ast-desktop-header > [CLASS*="-header-wrap"]:last-child { border-bottom-color: ' + color + '; } ';
-					dynamicStyle += ' .ast-theme-transparent-header #ast-desktop-header > [CLASS*="-header-wrap"]:last-child { border-bottom-color: ' + color + '; } ';
+				dynamicStyle += ' body.ast-theme-transparent-header.ast-header-break-point .main-header-bar { border-bottom-color: ' + color + '; } ';
 
 				astra_add_dynamic_css( 'transparent-header-main-sep-color', dynamicStyle );
 			}
