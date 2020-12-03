@@ -530,16 +530,7 @@ class Astra_Social_Component_Dynamic_CSS {
 		.ast-header-social-wrap .ast-builder-social-element:last-child {
 			margin-right: 0;
 		}
-		.social-show-label-true .ast-builder-social-element {
-			width: auto;
-			padding: 0 0.4em;
-		}
-		.ast-header-social-wrap .ast-builder-social-element:first-child {
-			margin-left: 0;
-		}  
-		.ast-header-social-wrap .ast-builder-social-element:last-child {
-			margin-right: 0;
-		}
+		
 		.ast-builder-layout-element .ast-footer-social-wrap .ast-builder-social-element:first-child {
 			margin-left: 0;
 		}
