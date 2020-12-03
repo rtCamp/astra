@@ -500,7 +500,47 @@ class Astra_Social_Component_Dynamic_CSS {
 		.header-social-inner-wrap.ast-social-color-type-official .ast-builder-social-element svg,
 		.footer-social-inner-wrap.ast-social-color-type-official .ast-builder-social-element svg {
 		  fill: currentColor;
-		}';
+		}
+		.ast-builder-social-element {
+			-js-display: inline-flex;
+			display: inline-flex;
+			line-height: 1;
+			color: #3a3a3a;
+			background: transparent;
+			vertical-align: middle;
+			transition: all 0.01s;
+			margin-left: 6px;
+			margin-right: 6px;
+			justify-content: center;
+			align-items: center;
+		}		  
+		.ast-builder-social-element:hover {
+		   color: #0274be;
+		}		  
+		.ast-builder-social-element .social-item-label {
+			padding-left: 6px;
+		}
+		.social-show-label-true .ast-builder-social-element {
+			width: auto;
+			padding: 0 0.4em;
+		} 
+		.ast-header-social-wrap .ast-builder-social-element:first-child {
+			margin-left: 0;
+		}
+		.ast-header-social-wrap .ast-builder-social-element:last-child {
+			margin-right: 0;
+		}
+		.social-show-label-true .ast-builder-social-element {
+			width: auto;
+			padding: 0 0.4em;
+		}
+		.ast-header-social-wrap .ast-builder-social-element:first-child {
+			margin-left: 0;
+		}  
+		.ast-header-social-wrap .ast-builder-social-element:last-child {
+			margin-right: 0;
+		}
+		';
 	}
 }
 
