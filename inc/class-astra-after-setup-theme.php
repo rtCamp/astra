@@ -176,7 +176,7 @@ if ( ! class_exists( 'Astra_After_Setup_Theme' ) ) {
 			}
 
 			// Enable Webstories.
-			add_theme_support( 'web-stories-options' );
+			add_theme_support( 'web-story-options' );
 
 		}
 
