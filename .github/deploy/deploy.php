@@ -78,8 +78,8 @@ desc( 'Reset opcache' );
 task( 'opcache:reset', function () {
 
 	cd( '{{deploy_path}}' );
-	$output = run( 'ee shell --command="php /var/www/current/cachetool.phar opcache:reset --fcgi=127.0.0.1:9000" --skip-tty' );
-	run( 'ee shell --command="rm /var/www/current/cachetool.phar" --skip-tty' );
+	$output = run( 'ee shell --command="php /var/www/theme/current/cachetool.phar opcache:reset --fcgi=127.0.0.1:9000" --skip-tty' );
+	run( 'ee shell --command="rm /var/www/theme/current/cachetool.phar" --skip-tty' );
 	writeln( '<info>' . $output . '</info>' );
 } );
 
