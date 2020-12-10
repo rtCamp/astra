@@ -29,6 +29,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 <body <?php astra_schema_body(); ?> <?php body_class(); ?>>
 
+<?php if( function_exists('web_stories_customizer') ) web_stories_customizer(); ?>
+
 <?php astra_body_top(); ?>
 <?php wp_body_open(); ?>
 <div 
