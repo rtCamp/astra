@@ -28,6 +28,17 @@ if ( ! defined( 'ABSPATH' ) ) {
 </head>
 
 <body <?php astra_schema_body(); ?> <?php body_class(); ?>>
+
+<?php
+
+	// Embed web stories above header with pre-configured customizer settings.
+	if ( class_exists( 'Google\Web_Stories\Customizer' ) ) {
+		$customizer = new Google\Web_Stories\Customizer();
+		echo $customizer->render_stories();
+	}
+
+?>
+
 <?php astra_body_top(); ?>
 <?php wp_body_open(); ?>
 <div 
