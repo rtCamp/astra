@@ -5462,3 +5462,9 @@ input[type="color"]::-webkit-color-swatch {
 .ast-align-self-stretch {
   align-self: stretch;
 }
+
+/*----------  Web Stories  ----------*/
+.web-stories-list.web-stories-list--customizer.is-view-type-circles {
+  border-bottom: 1px #ccc solid;
+  padding: 15px 0;
+}

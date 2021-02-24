@@ -33,6 +33,7 @@
 
 .ast-desktop .astra-menu-animation-slide-up > .full-width-mega.menu-item.focus > .astra-full-megamenu-wrapper,
 .ast-desktop .astra-menu-animation-slide-up > .full-width-mega.menu-item:hover > .astra-full-megamenu-wrapper {
+  -js-display: flex;
   display: flex;
 }
 
@@ -59,6 +60,7 @@
 
 .ast-desktop .astra-menu-animation-slide-down > .full-width-mega.menu-item.focus > .astra-full-megamenu-wrapper,
 .ast-desktop .astra-menu-animation-slide-down > .full-width-mega.menu-item:hover > .astra-full-megamenu-wrapper {
+  -js-display: flex;
   display: flex;
 }
 
@@ -83,5 +85,6 @@
 
 .ast-desktop .astra-menu-animation-fade > .full-width-mega.menu-item.focus > .astra-full-megamenu-wrapper,
 .ast-desktop .astra-menu-animation-fade > .full-width-mega.menu-item:hover > .astra-full-megamenu-wrapper {
+  -js-display: flex;
   display: flex;
 }
