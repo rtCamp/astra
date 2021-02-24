@@ -28,16 +28,14 @@ if ( ! defined( 'ABSPATH' ) ) {
 </head>
 
 <body <?php astra_schema_body(); ?> <?php body_class(); ?>>
-
 <?php
 
-	// Embed web stories above header with pre-configured customizer settings.
-	if( function_exists( '\Google\Web_Stories\render_theme_stories' ) ) {
-		\Google\Web_Stories\render_theme_stories();
-	}
+// Embed web stories above header with pre-configured customizer settings.
+if ( function_exists( '\Google\Web_Stories\render_theme_stories' ) ) {
+	\Google\Web_Stories\render_theme_stories();
+}
 
 ?>
-
 <?php astra_body_top(); ?>
 <?php wp_body_open(); ?>
 <div 
