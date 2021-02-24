@@ -32,9 +32,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 <?php
 
 	// Embed web stories above header with pre-configured customizer settings.
-	if ( class_exists( 'Google\Web_Stories\Customizer' ) ) {
-		$customizer = new Google\Web_Stories\Customizer();
-		echo $customizer->render_stories();
+	if( function_exists( '\Google\Web_Stories\render_theme_stories' ) ) {
+		\Google\Web_Stories\render_theme_stories();
 	}
 
 ?>
