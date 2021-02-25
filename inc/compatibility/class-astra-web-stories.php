@@ -48,12 +48,11 @@ if ( ! class_exists( 'Astra_Web_Stories' ) ) :
 		 */
 		public function __construct() {
 			add_action( 'after_setup_theme', array( $this, 'web_stories_setup' ) );
-            add_action( 'wp_body_open', array( $this, 'web_stories_embed' ) );
+			add_action( 'wp_body_open', array( $this, 'web_stories_embed' ) );
 		}
 
 		/**
 		 * Add theme support for Web Stories.
-		 * See: https://Web_Stories.me/support/infinite-scroll/
 		 */
 		public function web_stories_setup() {
             // Enable web stories customizer support.
