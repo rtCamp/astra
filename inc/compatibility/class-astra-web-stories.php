@@ -66,6 +66,16 @@ if ( ! class_exists( 'Astra_Web_Stories' ) ) :
 			// Embed web stories above header with pre-configured customizer settings.
             if ( function_exists( '\Google\Web_Stories\render_theme_stories' ) ) {
                 \Google\Web_Stories\render_theme_stories();
+
+				?>
+				<style type="text/css">
+				.web-stories-list.web-stories-list--customizer.is-view-type-circles {
+					border-bottom: 1px solid #ccc;
+					padding: 15px 0;
+					margin-bottom: 0;
+				}
+				</style>
+				<?php
             }
 		} // end function web_stories_embed
 
